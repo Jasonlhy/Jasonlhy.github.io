@@ -1,0 +1,464 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Dynamic Programming | Jason小小日記</title>	
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+  	
+    
+    
+    <meta name="author" content="Jason Liu">
+    
+    <meta name="description" content="Definition of Dynamic ProgrammingCopy from wikipediadynamic programming is a method for solving a complex problem by breaking it down into a collectio">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Jason小小日記" title="Jason小小日記"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Jason小小日記">Jason小小日記</a></h1>
+				<h2 class="blog-motto">紀錄生活中無聊事</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:jasonlhy.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/12/13/Dynamic-Programming/" title="Dynamic Programming" itemprop="url">Dynamic Programming</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://jasonlhy.github.io" title="Jason Liu">Jason Liu</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-12-13T14:33:25.000Z" itemprop="datePublished">2015-12-13</time>
+    更新日期:<time datetime="2015-12-13T15:38:08.000Z" itemprop="dateModified">2015-12-13</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Definition_of_Dynamic_Programming"><span class="toc-number">1.</span> <span class="toc-text">Definition of Dynamic Programming</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Weighted_Interval_Scheduling_Problem"><span class="toc-number">2.</span> <span class="toc-text">Weighted Interval Scheduling Problem</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Longest_Common_Subsequence"><span class="toc-number">3.</span> <span class="toc-text">Longest Common Subsequence</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Shortest_common_superseuqnece"><span class="toc-number">4.</span> <span class="toc-text">Shortest common superseuqnece</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0-1_Knapsack_Problem"><span class="toc-number">5.</span> <span class="toc-text">0-1 Knapsack Problem</span></a></li></ol>
+		</div>
+		
+		<h1 id="Definition_of_Dynamic_Programming"><a href="#Definition_of_Dynamic_Programming" class="headerlink" title="Definition of Dynamic Programming"></a>Definition of Dynamic Programming</h1><p>Copy from wikipedia<br><blockquote><p>dynamic programming is a method for solving a complex problem by breaking it down into a collection of simpler subproblems, solving each of those subproblems just once, and storing their solutions - ideally, using a memory-based data structure. The next time the same subproblem occurs, instead of recomputing its solution, one simply looks up the previously computed solution, thereby saving computation time at the expense of a (hopefully) modest expenditure in storage space. (Each of the subproblem solutions is indexed in some way, typically based on the values of its input parameters, so as to facilitate its lookup.) The act of storing solutions to subproblems is called “memoization”.</p>
+</blockquote></p>
+<ul>
+<li>one of the divide and conquer method and use a table for memorialization of temporary(smaller problem) result.</li>
+<li>executive, considering every possibility.</li>
+<li>usually done with bottom up approach in implementation (start from 0 of the array)</li>
+<li>quite independent in each subproblem, each result of the subproblem is a good, complete solution of that subproblem.</li>
+<li>usually in structure of OPT(subproblem) + xxxx</li>
+<li>Usually YES _ NO situation? INCLUDE_NOT_INCLUDE situation?</li>
+</ul>
+<h1 id="Weighted_Interval_Scheduling_Problem"><a href="#Weighted_Interval_Scheduling_Problem" class="headerlink" title="Weighted Interval Scheduling Problem"></a>Weighted Interval Scheduling Problem</h1><p>Consider whether a job j is chosen to be included or not</p>
+<ol>
+<li>If include consider it last compatible job (p(j) + Vj</li>
+<li>If not consider it previous job</li>
+</ol>
+<pre class="sample">
+  Sort by the finish time
+  OPT(j) = 0 if j = 0
+  OPT(j) = max(OPT(j - 1), OPT(p(j) + Vj)
+</pre>
+
+<p>Compute p(n)</p>
+<pre class="sample">
+  sort one list with start time (1)
+  sort one list with finish time (2)
+  loop from the end until (1).start > finish
+</pre>
+
+<h1 id="Longest_Common_Subsequence"><a href="#Longest_Common_Subsequence" class="headerlink" title="Longest Common Subsequence"></a>Longest Common Subsequence</h1><p>X, Y be two sequence of letters, Find their longest common subsequence<br>Consider whether a letter X[i], Y[j] equal or not</p>
+<ol>
+<li>Either one of them is empty, zero in common</li>
+<li>They are the same, the LCS of without both letter + 1</li>
+<li>They are different, max LCS of missing either one of the letter</li>
+</ol>
+<pre class="sample">
+  LCS[i, j] = 0 if i or y = 0
+  LCS[i, j] = LCS[i - 1, j - 1] + 1, X[i] == Y[j]
+  LCS[i, j] = max(LCS[i-1, j], LCS[i, j-1]), X[i] != Y[j]
+</pre>
+
+<h1 id="Shortest_common_superseuqnece"><a href="#Shortest_common_superseuqnece" class="headerlink" title="Shortest common superseuqnece"></a>Shortest common superseuqnece</h1><p>X, Y be two sequence of letters, Find super subersequence of them (superset of both characters)<br>Consider whether a letter X[i], Y[j] equal or not</p>
+<ol>
+<li>Either one of them is empty, |j| or |i|</li>
+<li>Not equal, try to include X or try to include Y in the supersequence, compare SCS from missing either one of the letters + 1</li>
+<li>Equal, SCS from missing both letters + 1<pre class="sample">
+SCS = |j| if i is 0
+SCS = |i| if j is 0
+SCS = min(SCS[i-1, j] + 1, SCS[i, j-1] + 1)
+SCS = SCS[i-1, j-1] + 1
+</pre>
+
+</li>
+</ol>
+<h1 id="0-1_Knapsack_Problem"><a href="#0-1_Knapsack_Problem" class="headerlink" title="0-1 Knapsack Problem"></a>0-1 Knapsack Problem</h1><p>Consider a set of items. consider include item i or not</p>
+<ol>
+<li>no items include yet, of course zero value</li>
+<li>cannot include the item due to exceed of weight limit </li>
+<li>not include the item, consider OPT from previous items<br>VS<br>include the item, consider OPT from the (bag weight - item weight) + item value</li>
+</ol>
+<pre class="sample">
+OPT[i, W] = 0 if i = 0
+OPT[i, W] = OPT[i - 1, W] Wi >= W
+OPT[i, W] = max(OPT[i - 1, W], OPT[i - 1 , W - Wi] + Vi) if W >= Wi
+</pre>  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Dynamic-Programming/">Dynamic Programming</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://jasonlhy.github.io/2015/12/13/Dynamic-Programming/" data-title="Dynamic Programming | Jason小小日記" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/12/13/Maximum-Flow/" title="Maximum Flow">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  Maximum Flow</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/12/13/Divide-and-Conquer/"  title="Divide and Conquer">
+ <strong>NEXT:</strong><br/> 
+ <span>Divide and Conquer
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comment">
+  <h1 class="title">文章評論</h1>
+
+  
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+  
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Definition_of_Dynamic_Programming"><span class="toc-number">1.</span> <span class="toc-text">Definition of Dynamic Programming</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Weighted_Interval_Scheduling_Problem"><span class="toc-number">2.</span> <span class="toc-text">Weighted Interval Scheduling Problem</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Longest_Common_Subsequence"><span class="toc-number">3.</span> <span class="toc-text">Longest Common Subsequence</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Shortest_common_superseuqnece"><span class="toc-number">4.</span> <span class="toc-text">Shortest common superseuqnece</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0-1_Knapsack_Problem"><span class="toc-number">5.</span> <span class="toc-text">0-1 Knapsack Problem</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分類</p>
+		<ul>
+		
+			<li><a href="/categories/Algorithm/" title="Algorithm">Algorithm<sup>8</sup></a></li>
+		
+			<li><a href="/categories/Daily-Life/" title="Daily Life">Daily Life<sup>1</sup></a></li>
+		
+			<li><a href="/categories/Note/" title="Note">Note<sup>2</sup></a></li>
+		
+			<li><a href="/categories/Problem/" title="Problem">Problem<sup>6</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/Code/" title="Code">Code<sup>3</sup></a></li>
+		
+			<li><a href="/tags/Dynamic-Programming/" title="Dynamic Programming">Dynamic Programming<sup>3</sup></a></li>
+		
+			<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Graph-Theory/" title="Graph Theory">Graph Theory<sup>3</sup></a></li>
+		
+			<li><a href="/tags/Greedy/" title="Greedy">Greedy<sup>3</sup></a></li>
+		
+			<li><a href="/tags/Gundam/" title="Gundam">Gundam<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Haskell/" title="Haskell">Haskell<sup>3</sup></a></li>
+		
+			<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>4</sup></a></li>
+		
+			<li><a href="/tags/Nightmare/" title="Nightmare">Nightmare<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Pacman/" title="Pacman">Pacman<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Programming/" title="Programming">Programming<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Ruby/" title="Ruby">Ruby<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Slide/" title="Slide">Slide<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Sorting/" title="Sorting">Sorting<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Toy/" title="Toy">Toy<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		
+		
+		<a href="https://github.com/Jasonlhy" target="_blank" title="github"></a>
+		
+		
+		
+        <a href="https://www.linkedin.com/pub/jason-liu/80/aa7/6b8" target="_blank" title="linkedin"></a>
+        
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman, modified by Jason </a> © 2016 
+		
+		<a href="http://jasonlhy.github.io" target="_blank" title="Jason Liu">Jason Liu</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+    <script type="text/javascript">
+    var disqus_shortname = 'jasonlittlediary';
+
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+    </script>
+
+
+
+
+
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-69082428-1', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69082428-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+  </body>
+</html>
