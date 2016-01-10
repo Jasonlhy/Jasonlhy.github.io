@@ -47,6 +47,10 @@
 					
 						<li><a href="/archives">Archives</a></li>
 					
+						<li><a href="/about.html">About</a></li>
+					
+						<li><a href="/useful_website.html">Useful Website</a></li>
+					
 					<li>
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
@@ -87,11 +91,12 @@
 		
 		</div>
 		
+
 		<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">solveRPN' :: (<span class="type">Num</span> a, <span class="type">Read</span> a) =&gt; <span class="type">String</span> -&gt; a  </span><br><span class="line">solveRPN' = head . foldl foldingFunction <span class="literal">[]</span> . words  </span><br><span class="line">    <span class="keyword">where</span>   foldingFunction (x:y:ys) <span class="string">"*"</span> = (x * y):ys  </span><br><span class="line">            foldingFunction (x:y:ys) <span class="string">"+"</span> = (x + y):ys  </span><br><span class="line">            foldingFunction (x:y:ys) <span class="string">"-"</span> = (y - x):ys  </span><br><span class="line">            foldingFunction xs numberString = read numberString:xs</span><br><span class="line"></span><br><span class="line">solveRPN' <span class="string">"10 4.0 3 + 2 * -"</span></span><br><span class="line">*** <span class="type">Exception</span>: <span class="type">Prelude</span>.read: no parse</span><br></pre></td></tr></table></figure>
 <p>By default, the ghc will deduce this function as <code>(Num Int, Read Int)</code> . The error is casued by the Prelude.read function which cannot parse a “Floating number string” into Int. However, we can explicity specific the type of expression is Float. Integer string can be parsed into Floating number but Floating number cannot be parsed into Int.</p>
 <figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">read <span class="string">"4.0"</span> <span class="type-annotation">::</span> <span class="built_in">Int</span></span><br><span class="line">*** <span class="built_in">Exception</span>: Prelude.read: no parse</span><br><span class="line"></span><br><span class="line">read <span class="string">"4"</span> <span class="type-annotation">::</span> Float</span><br><span class="line"><span class="number">4.0</span></span><br><span class="line"></span><br><span class="line">solveRPN' <span class="string">"10.0 4 3 + 2 * -"</span> <span class="type-annotation">::</span> Float</span><br><span class="line">-<span class="number">4.0</span></span><br></pre></td></tr></table></figure>
   
-	</div>
+	 </div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
@@ -115,6 +120,7 @@
 </div>
 </footer>   	       
 	</article>
+  
 	
 <nav class="article-nav clearfix">
  
@@ -311,8 +317,9 @@ $(document).ready(function(){
    ae.wrap('<div class="video-container" />');
   };
   if(ah.length==0){
-    t.css('display','none');
-  }else{
+//    t.css('display','none');
+  }
+  else{
     c.click(function(){
       ta.css('display', 'block').addClass('fadeIn');
     });

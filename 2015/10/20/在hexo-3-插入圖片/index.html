@@ -47,6 +47,10 @@
 					
 						<li><a href="/archives">Archives</a></li>
 					
+						<li><a href="/about.html">About</a></li>
+					
+						<li><a href="/useful_website.html">Useful Website</a></li>
+					
 					<li>
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
@@ -87,6 +91,7 @@
 		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u9996_u8981_u689D_u4EF6"><span class="toc-number">1.</span> <span class="toc-text">首要條件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u9047_u5230_u7684_u554F_u984C"><span class="toc-number">2.</span> <span class="toc-text">遇到的問題</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u89E3_u6C7A_u65B9_u6CD5"><span class="toc-number">3.</span> <span class="toc-text">解決方法</span></a></li></ol>
 		</div>
 		
+
 		<h1 id="u9996_u8981_u689D_u4EF6"><a href="#u9996_u8981_u689D_u4EF6" class="headerlink" title="首要條件"></a>首要條件</h1><p>hexo 3 支持asset folder<br>只要把圖片放左post同層的同名字folder, 然用利用asset_img 就能連結到圖片。</p>
 <p>文件結構如下圖：<br><img src="/2015/10/20/在hexo-3-插入圖片/show.png" alt="show.png" title=""></p>
 <p>在post 中加入以下程式碼：<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="preprocessor">%</span> asset_img <span class="string">'messy.png'</span> <span class="preprocessor">%</span>&#125;</span><br><span class="line">&#123;<span class="preprocessor">%</span> asset_img <span class="string">'source.png'</span> <span class="preprocessor">%</span>&#125;</span><br></pre></td></tr></table></figure></p>
@@ -94,7 +99,7 @@
 <h1 id="u9047_u5230_u7684_u554F_u984C"><a href="#u9047_u5230_u7684_u554F_u984C" class="headerlink" title="遇到的問題"></a>遇到的問題</h1><p><a href="https://hexo.io/docs/asset-folders.html" target="_blank" rel="external">官方文件</a>有少許誤導，post_asset_folder 作用為開新post 時自動開同名folder<br>但如果_config.yml 中的post_asset_folder 設定為false, 一定會插入圖片失敗。<br>因為hexo generate 不會把圖片和post 一起放在public的folder內</p>
 <h1 id="u89E3_u6C7A_u65B9_u6CD5"><a href="#u89E3_u6C7A_u65B9_u6CD5" class="headerlink" title="解決方法"></a>解決方法</h1><p>在_config.yml 把 post_asset_folder 設定為true</p>
   
-	</div>
+	 </div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
@@ -118,6 +123,7 @@
 </div>
 </footer>   	       
 	</article>
+  
 	
 <nav class="article-nav clearfix">
  
@@ -314,8 +320,9 @@ $(document).ready(function(){
    ae.wrap('<div class="video-container" />');
   };
   if(ah.length==0){
-    t.css('display','none');
-  }else{
+//    t.css('display','none');
+  }
+  else{
     c.click(function(){
       ta.css('display', 'block').addClass('fadeIn');
     });

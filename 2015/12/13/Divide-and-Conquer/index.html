@@ -47,6 +47,10 @@
 					
 						<li><a href="/archives">Archives</a></li>
 					
+						<li><a href="/about.html">About</a></li>
+					
+						<li><a href="/useful_website.html">Useful Website</a></li>
+					
 					<li>
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
@@ -87,6 +91,7 @@
 		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Defintion_of_Divide_and_Conquer"><span class="toc-number">1.</span> <span class="toc-text">Defintion of Divide and Conquer</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Merge_Sort"><span class="toc-number">2.</span> <span class="toc-text">Merge Sort</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Sample_code_written_in_C"><span class="toc-number">2.1.</span> <span class="toc-text">Sample code written in C</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Counting_inversion"><span class="toc-number">2.2.</span> <span class="toc-text">Counting inversion</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Cloest_Pair"><span class="toc-number">3.</span> <span class="toc-text">Cloest Pair</span></a></li></ol>
 		</div>
 		
+
 		<h1 id="Defintion_of_Divide_and_Conquer"><a href="#Defintion_of_Divide_and_Conquer" class="headerlink" title="Defintion of Divide and Conquer"></a>Defintion of Divide and Conquer</h1><p>Divide the problem into smaller problem, use the result of the small problems to form the result of the bigger problem.</p>
 <h1 id="Merge_Sort"><a href="#Merge_Sort" class="headerlink" title="Merge Sort"></a>Merge Sort</h1><p>Divide the elements into two parts, recursively divide each parts until two elements are remained, merge each part together.</p>
 <p>Each level operation is n<br>Total running time = each level big O <em> number of level<br>Number of level = 2 log2 n<br>= n </em> 2 log2 n<br>= n log2 n<br>Running time: <code>O(n log n)</code></p>
@@ -107,7 +112,7 @@
 <h1 id="Cloest_Pair"><a href="#Cloest_Pair" class="headerlink" title="Cloest Pair"></a>Cloest Pair</h1><p>It can be done by dividing the panel into left and right panel and finding the closest pair recursively in each part.<br>To find the closes pair perhaps connecting from left panel to right panel<br>we need to test 2 * beta distance<br>which beta is defined as min(closest_distance(left), closest_distance(right))<br>[Left][Right]<br>[Left&lt;-beta-&gt;][&lt;-beta-&gt;Right]</p>
 <p>People find that in order to find the closest pair of an particular point in beta area, they just need to test its 11-th consecutive point in y coordinate<br>let yg be the elements in the beta element<br>for (int i = 0; i &lt; yg.length; i++)<br>  for (int j = 1; j &lt;= 11; j++)<br>     if (distance(yg[i], yg[i+j] &lt; beta)<br>        beta = distance(yg[i], yg[i+j])</p>
   
-	</div>
+	 </div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
@@ -131,6 +136,7 @@
 </div>
 </footer>   	       
 	</article>
+  
 	
 <nav class="article-nav clearfix">
  
@@ -327,8 +333,9 @@ $(document).ready(function(){
    ae.wrap('<div class="video-container" />');
   };
   if(ah.length==0){
-    t.css('display','none');
-  }else{
+//    t.css('display','none');
+  }
+  else{
     c.click(function(){
       ta.css('display', 'block').addClass('fadeIn');
     });

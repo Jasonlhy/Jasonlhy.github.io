@@ -47,6 +47,10 @@
 					
 						<li><a href="/archives">Archives</a></li>
 					
+						<li><a href="/about.html">About</a></li>
+					
+						<li><a href="/useful_website.html">Useful Website</a></li>
+					
 					<li>
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
@@ -87,6 +91,7 @@
 		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Relaxation"><span class="toc-number">1.</span> <span class="toc-text">Relaxation</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dijkstra_Algorithm"><span class="toc-number">2.</span> <span class="toc-text">Dijkstra Algorithm</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Running_time"><span class="toc-number">2.1.</span> <span class="toc-text">Running time</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Limitation"><span class="toc-number">2.2.</span> <span class="toc-text">Limitation</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Bellman-Ford_Algorithm"><span class="toc-number">3.</span> <span class="toc-text">Bellman-Ford Algorithm</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Running_time_analysis"><span class="toc-number">3.1.</span> <span class="toc-text">Running time analysis</span></a></li></ol></li></ol>
 		</div>
 		
+
 		<h1 id="Relaxation"><a href="#Relaxation" class="headerlink" title="Relaxation"></a>Relaxation</h1><p>Each point has a known distance so far, if a vertex + distance to a particular point is shorter than the known distance of the point, update it.<br>if (d[v] &gt; d[u] + w(u, v))<br>  d[v] = d[u] + w(u, v)</p>
 <h1 id="Dijkstra_Algorithm"><a href="#Dijkstra_Algorithm" class="headerlink" title="Dijkstra Algorithm"></a>Dijkstra Algorithm</h1><p>Extract min from the priority queue and relax its surroudning vertexes.</p>
 <p>The priority queue is implement with Fibonacci heap</p>
@@ -127,7 +132,7 @@ for i = 1 to V - 1
 
 <h2 id="Running_time_analysis"><a href="#Running_time_analysis" class="headerlink" title="Running time analysis"></a>Running time analysis</h2><p>Simply O(VE), memory space (V + E)</p>
   
-	</div>
+	 </div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
@@ -151,6 +156,7 @@ for i = 1 to V - 1
 </div>
 </footer>   	       
 	</article>
+  
 	
 <nav class="article-nav clearfix">
  
@@ -347,8 +353,9 @@ $(document).ready(function(){
    ae.wrap('<div class="video-container" />');
   };
   if(ah.length==0){
-    t.css('display','none');
-  }else{
+//    t.css('display','none');
+  }
+  else{
     c.click(function(){
       ta.css('display', 'block').addClass('fadeIn');
     });

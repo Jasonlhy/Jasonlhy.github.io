@@ -47,6 +47,10 @@
 					
 						<li><a href="/archives">Archives</a></li>
 					
+						<li><a href="/about.html">About</a></li>
+					
+						<li><a href="/useful_website.html">Useful Website</a></li>
+					
 					<li>
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
@@ -87,6 +91,7 @@
 		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Problem"><span class="toc-number">1.</span> <span class="toc-text">Problem</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Steps_of_Solution"><span class="toc-number">2.</span> <span class="toc-text">Steps of Solution</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Load_the_source_code"><span class="toc-number">3.</span> <span class="toc-text">Load the source code</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Set_the_module_to_Prelude"><span class="toc-number">4.</span> <span class="toc-text">Set the module to Prelude</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Import_the_modules"><span class="toc-number">5.</span> <span class="toc-text">Import the modules</span></a></li></ol>
 		</div>
 		
+
 		<h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><p>I am reading <a href="http://learnyouahaskell.com" target="_blank" rel="external">Learn you a Haskell for great Good</a> and I faced the problem of “attempting to use module … which is not loaded” when I am at the end of chapter module, finally I got the solution on it</p>
 <h1 id="Steps_of_Solution"><a href="#Steps_of_Solution" class="headerlink" title="Steps of Solution"></a>Steps of Solution</h1><ol>
 <li>Load the source code</li>
@@ -100,7 +105,7 @@
 <h1 id="Import_the_modules"><a href="#Import_the_modules" class="headerlink" title="Import the modules"></a>Import the modules</h1><p>Import the modules we just loaded in the GHCI, and you can see the qualified name of the module will be append into the namespace.</p>
 <figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Prelude</span>&gt; <span class="import"><span class="keyword">import</span> <span class="keyword">qualified</span> Geometry.Sphere <span class="keyword">as</span> Sphere </span></span><br><span class="line"><span class="type">Prelude</span> <span class="type">Sphere</span>&gt; <span class="import"><span class="keyword">import</span> <span class="keyword">qualified</span> Geometry.Cuboid <span class="keyword">as</span> Cuboid </span></span><br><span class="line"><span class="type">Prelude</span> <span class="type">Sphere</span> <span class="type">Cuboid</span>&gt; <span class="import"><span class="keyword">import</span> <span class="keyword">qualified</span> Geometry.Cube <span class="keyword">as</span> Cube </span></span><br><span class="line"><span class="type">Prelude</span> <span class="type">Sphere</span> <span class="type">Cuboid</span> <span class="type">Cube</span>&gt;</span><br></pre></td></tr></table></figure>
   
-	</div>
+	 </div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
@@ -124,6 +129,7 @@
 </div>
 </footer>   	       
 	</article>
+  
 	
 <nav class="article-nav clearfix">
  
@@ -312,8 +318,9 @@ $(document).ready(function(){
    ae.wrap('<div class="video-container" />');
   };
   if(ah.length==0){
-    t.css('display','none');
-  }else{
+//    t.css('display','none');
+  }
+  else{
     c.click(function(){
       ta.css('display', 'block').addClass('fadeIn');
     });

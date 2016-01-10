@@ -49,6 +49,10 @@
 					
 						<li><a href="/archives">Archives</a></li>
 					
+						<li><a href="/about.html">About</a></li>
+					
+						<li><a href="/useful_website.html">Useful Website</a></li>
+					
 					<li>
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
@@ -89,6 +93,7 @@
 		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Installation_3A"><span class="toc-number">2.</span> <span class="toc-text">Installation:</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Result_3A"><span class="toc-number">3.</span> <span class="toc-text">Result:</span></a></li></ol>
 		</div>
 		
+
 		<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p><a href="http://js.cytoscape.org" target="_blank" rel="external">Cytoscape.js</a> is an open source graph theory visaulization library written in Javascript. This article guide you through the procedures of integrating the library with hexo. There are many ways to do so, this is only one of the methods. People tend to put the javascript files inside <code>after_footer.ejs</code>, however, the article content is loaded before javascript files. If you want to write the script of drawing graphs JUST INSIDE the markdown file, you have to wait until the javascript files of is loaded.</p>
 <h1 id="Installation_3A"><a href="#Installation_3A" class="headerlink" title="Installation:"></a>Installation:</h1><p>The following guideline is written based on the themes called pacman.</p>
 <ol>
@@ -153,7 +158,7 @@ function draw(){
 $waitUntil(function(){ return typeof(cytoscape) != "undefined" && typeof($) != "undefined"}, 
            draw);
 </script>  
-	</div>
+	 </div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
@@ -177,6 +182,7 @@ $waitUntil(function(){ return typeof(cytoscape) != "undefined" && typeof($) != "
 </div>
 </footer>   	       
 	</article>
+  
 	
 <nav class="article-nav clearfix">
  
@@ -373,8 +379,9 @@ $(document).ready(function(){
    ae.wrap('<div class="video-container" />');
   };
   if(ah.length==0){
-    t.css('display','none');
-  }else{
+//    t.css('display','none');
+  }
+  else{
     c.click(function(){
       ta.css('display', 'block').addClass('fadeIn');
     });

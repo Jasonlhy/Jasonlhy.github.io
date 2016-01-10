@@ -47,6 +47,10 @@
 					
 						<li><a href="/archives">Archives</a></li>
 					
+						<li><a href="/about.html">About</a></li>
+					
+						<li><a href="/useful_website.html">Useful Website</a></li>
+					
 					<li>
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
@@ -87,6 +91,7 @@
 		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u4ECB_u7D39_u7C21_u55AEdatat_type"><span class="toc-number">1.</span> <span class="toc-text">介紹簡單datat type</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u4ECB_u7D39Method_2C_Regular_expression_2C_Block_2C_Convention"><span class="toc-number">2.</span> <span class="toc-text">介紹Method, Regular expression, Block, Convention</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u4ECB_u7D39Class_2C_Inheritance_2C_Module_2C_Mixin"><span class="toc-number">3.</span> <span class="toc-text">介紹Class, Inheritance, Module, Mixin</span></a></li></ol>
 		</div>
 		
+
 		<p>以前Ruby 1.9 年代的筆記，以英語寫成。<br>There are notes written for Ruby 1.9.</p>
 <h1 id="u4ECB_u7D39_u7C21_u55AEdatat_type"><a href="#u4ECB_u7D39_u7C21_u55AEdatat_type" class="headerlink" title="介紹簡單datat type"></a>介紹簡單datat type</h1><p><iframe src="//www.slideshare.net/slideshow/embed_code/key/kRWQD30OFbHLRN" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/HugeJ/ruby-basic-54277284" title="Ruby basic" target="_blank">Ruby basic</a> </strong> from <strong><a href="//www.slideshare.net/HugeJ" target="_blank">Ho Yin Liu</a></strong> </div></p>
 <hr>
@@ -94,7 +99,7 @@
 <hr>
 <h1 id="u4ECB_u7D39Class_2C_Inheritance_2C_Module_2C_Mixin"><a href="#u4ECB_u7D39Class_2C_Inheritance_2C_Module_2C_Mixin" class="headerlink" title="介紹Class, Inheritance, Module, Mixin"></a>介紹Class, Inheritance, Module, Mixin</h1><p><iframe src="//www.slideshare.net/slideshow/embed_code/key/tQE7jBdXYVHMpF" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/HugeJ/ruby-basic3" title="Ruby basic3" target="_blank">Ruby basic3</a> </strong> from <strong><a href="//www.slideshare.net/HugeJ" target="_blank">Ho Yin Liu</a></strong> </div></p>
   
-	</div>
+	 </div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
@@ -118,6 +123,7 @@
 </div>
 </footer>   	       
 	</article>
+  
 	
 <nav class="article-nav clearfix">
  
@@ -314,8 +320,9 @@ $(document).ready(function(){
    ae.wrap('<div class="video-container" />');
   };
   if(ah.length==0){
-    t.css('display','none');
-  }else{
+//    t.css('display','none');
+  }
+  else{
     c.click(function(){
       ta.css('display', 'block').addClass('fadeIn');
     });

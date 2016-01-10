@@ -47,6 +47,10 @@
 					
 						<li><a href="/archives">Archives</a></li>
 					
+						<li><a href="/about.html">About</a></li>
+					
+						<li><a href="/useful_website.html">Useful Website</a></li>
+					
 					<li>
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
@@ -87,6 +91,7 @@
 		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u539F_u56E0"><span class="toc-number">1.</span> <span class="toc-text">原因</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u89E3_u6C7A_u8FA8_u6CD5_uFF1A"><span class="toc-number">2.</span> <span class="toc-text">解決辨法：</span></a></li></ol>
 		</div>
 		
+
 		<p>剛安裝了pacman 主題, 可是程式碼在首頁亂作一團…<br><img src="/2015/10/20/pacman首頁顯示混亂/messy.png" alt="messy.png" title=""></p>
 <hr>
 <h1 id="u539F_u56E0"><a href="#u539F_u56E0" class="headerlink" title="原因"></a>原因</h1><p>看了template 的source code 才發現首頁會使用一個description 的attribute，否則就會strip_html(item.content)…難怪亂作一團。以前的tutorial 好像很多都叫人使用description 這個attribute，但官方文件卻沒有說明…<br><img src="/2015/10/20/pacman首頁顯示混亂/source.png" alt="source.png" title=""></p>
@@ -95,7 +100,7 @@
 <li>改template</li>
 </ol>
   
-	</div>
+	 </div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
@@ -119,6 +124,7 @@
 </div>
 </footer>   	       
 	</article>
+  
 	
 <nav class="article-nav clearfix">
  
@@ -315,8 +321,9 @@ $(document).ready(function(){
    ae.wrap('<div class="video-container" />');
   };
   if(ah.length==0){
-    t.css('display','none');
-  }else{
+//    t.css('display','none');
+  }
+  else{
     c.click(function(){
       ta.css('display', 'block').addClass('fadeIn');
     });

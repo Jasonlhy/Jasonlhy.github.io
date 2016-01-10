@@ -47,6 +47,10 @@
 					
 						<li><a href="/archives">Archives</a></li>
 					
+						<li><a href="/about.html">About</a></li>
+					
+						<li><a href="/useful_website.html">Useful Website</a></li>
+					
 					<li>
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
@@ -87,6 +91,7 @@
 		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u53EF_u60E1_u7684_u66F4_u65B0"><span class="toc-number">1.</span> <span class="toc-text">可惡的更新</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u60F3_u5230_u7684_u89E3_u6C7A_u65B9_u6CD5"><span class="toc-number">2.</span> <span class="toc-text">想到的解決方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u6700_u5F8C_u89E3_u6C7A_u65B9_u6CD5"><span class="toc-number">3.</span> <span class="toc-text">最後解決方法</span></a></li></ol>
 		</div>
 		
+
 		<h1 id="u53EF_u60E1_u7684_u66F4_u65B0"><a href="#u53EF_u60E1_u7684_u66F4_u65B0" class="headerlink" title="可惡的更新"></a>可惡的更新</h1><p>今天更新了xcode，連帶更新了git，卻令hexo-deployer-git 失效。<br>輸入<code>hexo deploy</code> 後，一直彈出 <code>Git - Permission denied (publickey)</code></p>
 <p>網上不少人都遇到同樣問題，有的把git 降回舊版本(2.0之前)，有的不用ssh 轉用https<br>一開始還以為是自帶程式庫問題，研究了一番程式碼，但無論怎樣更改結果也是相同。<br>訊息提到權限問題，我又利用管理員權限sudo，還把ssh 的key 的file permission 轉為777，最後更下載了最新版本的git, 結果還是一樣。</p>
 <h1 id="u60F3_u5230_u7684_u89E3_u6C7A_u65B9_u6CD5"><a href="#u60F3_u5230_u7684_u89E3_u6C7A_u65B9_u6CD5" class="headerlink" title="想到的解決方法"></a>想到的解決方法</h1><p>模仿hexo-deployer-git 的設計理念，寫了一個shell script 方便deploy。我在Mac OS 測試，有些指令Linux 也許不相容。</p>
@@ -95,7 +100,7 @@
 <h1 id="u6700_u5F8C_u89E3_u6C7A_u65B9_u6CD5"><a href="#u6700_u5F8C_u89E3_u6C7A_u65B9_u6CD5" class="headerlink" title="最後解決方法"></a>最後解決方法</h1><p>根據<a href="http://stackoverflow.com/questions/2643502/git-permission-denied-publickey" target="_blank" rel="external">這位大神</a>的回覆，這個問題是由public key authetication 引起，而原因是上載到server 的public key 內的email 和git global config 的email 不同。這是什麼錯誤訊息orz…</p>
 <p>只需設定global username 同global email (切記要和public key 內的email 相同)<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user<span class="class">.name</span> <span class="string">"Yourname"</span></span><br><span class="line">git config --global user<span class="class">.email</span> <span class="string">"YourEmail@email.com"</span></span><br></pre></td></tr></table></figure></p>
   
-	</div>
+	 </div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
@@ -119,6 +124,7 @@
 </div>
 </footer>   	       
 	</article>
+  
 	
 <nav class="article-nav clearfix">
  
@@ -315,8 +321,9 @@ $(document).ready(function(){
    ae.wrap('<div class="video-container" />');
   };
   if(ah.length==0){
-    t.css('display','none');
-  }else{
+//    t.css('display','none');
+  }
+  else{
     c.click(function(){
       ta.css('display', 'block').addClass('fadeIn');
     });

@@ -47,6 +47,10 @@
 					
 						<li><a href="/archives">Archives</a></li>
 					
+						<li><a href="/about.html">About</a></li>
+					
+						<li><a href="/useful_website.html">Useful Website</a></li>
+					
 					<li>
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
@@ -87,6 +91,7 @@
 		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#The_fractional_knapsack_problem"><span class="toc-number">1.</span> <span class="toc-text">The fractional knapsack problem</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">1.1.</span> <span class="toc-text">Solution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Proof"><span class="toc-number">1.2.</span> <span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Interval_Sceduling"><span class="toc-number">2.</span> <span class="toc-text">Interval Sceduling</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution-1"><span class="toc-number">2.1.</span> <span class="toc-text">Solution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Proof-1"><span class="toc-number">2.2.</span> <span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Interval_Partitioning"><span class="toc-number">3.</span> <span class="toc-text">Interval Partitioning</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution-2"><span class="toc-number">3.1.</span> <span class="toc-text">Solution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Proof-2"><span class="toc-number">3.2.</span> <span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Minimizing_Lateness"><span class="toc-number">4.</span> <span class="toc-text">Minimizing Lateness</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution-3"><span class="toc-number">4.1.</span> <span class="toc-text">Solution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Proof-3"><span class="toc-number">4.2.</span> <span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Limimitation"><span class="toc-number">5.</span> <span class="toc-text">Limimitation</span></a></li></ol>
 		</div>
 		
+
 		<p>Greedy algorithm is a common method in designing algorithm. It is more like a heuristic method instead of a algorithm. Every time multiple choices are faced, the program make an optimal choice (the choice seems best), so hopefully the final result will also be optimal. Unlike exhaustive dynamic programming  which examines all possibilities, it only concerns the “best choice” and the following consequeunce, and other possible choices will not be re-considered afterward.</p>
 <h1 id="The_fractional_knapsack_problem"><a href="#The_fractional_knapsack_problem" class="headerlink" title="The fractional knapsack problem"></a>The fractional knapsack problem</h1><p>Given items <code>I1, V2,...Vn</code> with value <code>V1, V2.,.Vn</code> and weight <code>W1, W2...Wn</code><br>And a bag with weight <code>W</code><br>Find the maximum sum of values of items can carry with the bag if the items can be divided in fraction.</p>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><pre class="sample">
@@ -222,7 +227,7 @@ After swap
 <li>Sometime is hard decide which is the “best choice”</li>
 </ul>
   
-	</div>
+	 </div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
@@ -246,6 +251,7 @@ After swap
 </div>
 </footer>   	       
 	</article>
+  
 	
 <nav class="article-nav clearfix">
  
@@ -442,8 +448,9 @@ $(document).ready(function(){
    ae.wrap('<div class="video-container" />');
   };
   if(ah.length==0){
-    t.css('display','none');
-  }else{
+//    t.css('display','none');
+  }
+  else{
     c.click(function(){
       ta.css('display', 'block').addClass('fadeIn');
     });

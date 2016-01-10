@@ -47,6 +47,10 @@
 					
 						<li><a href="/archives">Archives</a></li>
 					
+						<li><a href="/about.html">About</a></li>
+					
+						<li><a href="/useful_website.html">Useful Website</a></li>
+					
 					<li>
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
@@ -75,7 +79,7 @@
     </p>
   <p class="article-time">
     <time datetime="2015-12-13T15:46:55.000Z" itemprop="datePublished">2015-12-13</time>
-    更新日期:<time datetime="2015-12-13T16:17:21.000Z" itemprop="dateModified">2015-12-14</time>
+    更新日期:<time datetime="2016-01-10T22:44:24.000Z" itemprop="dateModified">2016-01-11</time>
     
   </p>
 </header>
@@ -87,6 +91,7 @@
 		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Residual_Network"><span class="toc-number">1.</span> <span class="toc-text">Residual Network</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Augmenting_path"><span class="toc-number">2.</span> <span class="toc-text">Augmenting path</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Residual_capacity"><span class="toc-number">3.</span> <span class="toc-text">Residual capacity</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ford-Fulkerson_algorithm"><span class="toc-number">4.</span> <span class="toc-text">Ford-Fulkerson algorithm</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#The_Edmonds-Karp_algorithm"><span class="toc-number">5.</span> <span class="toc-text">The Edmonds-Karp algorithm</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Maximum_bipartite_matching_3A"><span class="toc-number">6.</span> <span class="toc-text">Maximum bipartite matching:</span></a></li></ol>
 		</div>
 		
+
 		<h1 id="Residual_Network"><a href="#Residual_Network" class="headerlink" title="Residual Network"></a>Residual Network</h1><p>A “fake” network constructed from real network considering the flow in two ways, remaining flow capacity, and current flow capacity which allows to cancel.</p>
 <h1 id="Augmenting_path"><a href="#Augmenting_path" class="headerlink" title="Augmenting path"></a>Augmenting path</h1><p>Path from s to t in residual network</p>
 <h1 id="Residual_capacity"><a href="#Residual_capacity" class="headerlink" title="Residual capacity"></a>Residual capacity</h1><p>The maximum amount of net flow that we can ship along the edges of an augmenting path p, it can be called as bottleneck.<br>Residual capacity on edge(u, v) = real capacity from u to v - used flow from u to v<br>                                = c(u, v) - f(u, v)<br>Residual capacity on path(u -&gt; v -&gt; s) = min(cf(u,v), cf(v, s))</p>
@@ -106,7 +111,7 @@ while there exist a augmenting path p from s to t
 <h1 id="The_Edmonds-Karp_algorithm"><a href="#The_Edmonds-Karp_algorithm" class="headerlink" title="The Edmonds-Karp algorithm"></a>The Edmonds-Karp algorithm</h1><p>Use breath first search to find a path</p>
 <h1 id="Maximum_bipartite_matching_3A"><a href="#Maximum_bipartite_matching_3A" class="headerlink" title="Maximum bipartite matching:"></a>Maximum bipartite matching:</h1><p>Link s to t wth two lines, each line weighted 1</p>
   
-	</div>
+	 </div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
@@ -130,6 +135,7 @@ while there exist a augmenting path p from s to t
 </div>
 </footer>   	       
 	</article>
+  
 	
 <nav class="article-nav clearfix">
  
@@ -318,8 +324,9 @@ $(document).ready(function(){
    ae.wrap('<div class="video-container" />');
   };
   if(ah.length==0){
-    t.css('display','none');
-  }else{
+//    t.css('display','none');
+  }
+  else{
     c.click(function(){
       ta.css('display', 'block').addClass('fadeIn');
     });

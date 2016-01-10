@@ -47,6 +47,10 @@
 					
 						<li><a href="/archives">Archives</a></li>
 					
+						<li><a href="/about.html">About</a></li>
+					
+						<li><a href="/useful_website.html">Useful Website</a></li>
+					
 					<li>
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
@@ -87,6 +91,7 @@
 		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Definition_of_Dynamic_Programming"><span class="toc-number">1.</span> <span class="toc-text">Definition of Dynamic Programming</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Weighted_Interval_Scheduling_Problem"><span class="toc-number">2.</span> <span class="toc-text">Weighted Interval Scheduling Problem</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Longest_Common_Subsequence"><span class="toc-number">3.</span> <span class="toc-text">Longest Common Subsequence</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Shortest_common_superseuqnece"><span class="toc-number">4.</span> <span class="toc-text">Shortest common superseuqnece</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0-1_Knapsack_Problem"><span class="toc-number">5.</span> <span class="toc-text">0-1 Knapsack Problem</span></a></li></ol>
 		</div>
 		
+
 		<h1 id="Definition_of_Dynamic_Programming"><a href="#Definition_of_Dynamic_Programming" class="headerlink" title="Definition of Dynamic Programming"></a>Definition of Dynamic Programming</h1><p>Copy from wikipedia<br><blockquote><p>dynamic programming is a method for solving a complex problem by breaking it down into a collection of simpler subproblems, solving each of those subproblems just once, and storing their solutions - ideally, using a memory-based data structure. The next time the same subproblem occurs, instead of recomputing its solution, one simply looks up the previously computed solution, thereby saving computation time at the expense of a (hopefully) modest expenditure in storage space. (Each of the subproblem solutions is indexed in some way, typically based on the values of its input parameters, so as to facilitate its lookup.) The act of storing solutions to subproblems is called “memoization”.</p>
 </blockquote></p>
 <ul>
@@ -151,7 +156,7 @@ OPT[i, W] = 0 if i = 0
 OPT[i, W] = OPT[i - 1, W] Wi >= W
 OPT[i, W] = max(OPT[i - 1, W], OPT[i - 1 , W - Wi] + Vi) if W >= Wi
 </pre>  
-	</div>
+	 </div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
@@ -175,6 +180,7 @@ OPT[i, W] = max(OPT[i - 1, W], OPT[i - 1 , W - Wi] + Vi) if W >= Wi
 </div>
 </footer>   	       
 	</article>
+  
 	
 <nav class="article-nav clearfix">
  
@@ -371,8 +377,9 @@ $(document).ready(function(){
    ae.wrap('<div class="video-container" />');
   };
   if(ah.length==0){
-    t.css('display','none');
-  }else{
+//    t.css('display','none');
+  }
+  else{
     c.click(function(){
       ta.css('display', 'block').addClass('fadeIn');
     });

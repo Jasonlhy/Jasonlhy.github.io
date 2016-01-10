@@ -47,6 +47,10 @@
 					
 						<li><a href="/archives">Archives</a></li>
 					
+						<li><a href="/about.html">About</a></li>
+					
+						<li><a href="/useful_website.html">Useful Website</a></li>
+					
 					<li>
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
@@ -87,10 +91,11 @@
 		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Quick_Sort_-_Javascript_example"><span class="toc-number">1.</span> <span class="toc-text">Quick Sort - Javascript example</span></a></li></ol>
 		</div>
 		
+
 		<h1 id="Quick_Sort_-_Javascript_example"><a href="#Quick_Sort_-_Javascript_example" class="headerlink" title="Quick Sort - Javascript example"></a>Quick Sort - Javascript example</h1><p>The following code sample is implemented with Lomuto partition scheme, which selects the last element as pivot.</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quicksort</span>(<span class="params">array, start, end</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (start &lt; end)&#123;</span><br><span class="line">    	<span class="keyword">var</span> pivotIdx = partition(array, start, end);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// divide and conquer</span></span><br><span class="line">        quicksort(array, start, pivotIdx - <span class="number">1</span>);</span><br><span class="line">       	quicksort(array, pivotIdx + <span class="number">1</span>, end);</span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">partition</span>(<span class="params">array, start, end</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> pivot = array[end];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// idx counter for element smaller or equal to  the pivot</span></span><br><span class="line">    <span class="keyword">var</span> idx = start;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ignore the last one becasue it is pivot</span></span><br><span class="line">    <span class="keyword">var</span> i = start;</span><br><span class="line">    <span class="keyword">for</span> (i = start; i &lt; end; i++)&#123;</span><br><span class="line">    	<span class="keyword">if</span> (array[i] &lt;= pivot)&#123;</span><br><span class="line">			swap(array, i, idx);</span><br><span class="line">            idx++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// swap the pivot back to the center</span></span><br><span class="line">    swap(array, idx, end);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> idx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">swap</span>(<span class="params">array, a, b</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> temp = array[a];</span><br><span class="line">    array[a] = array[b];</span><br><span class="line">    array[b] = temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">array</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.debug(<span class="string">'Test: '</span> + array);</span><br><span class="line">    quicksort(array, <span class="number">0</span>, array.length - <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">console</span>.debug(<span class="string">' =&gt; '</span> + array);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]);</span><br><span class="line">test([<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>]);</span><br><span class="line">test([<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line">test([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]);</span><br><span class="line">test([<span class="number">2</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>]);</span><br><span class="line">test([<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">4</span>]);</span><br><span class="line">test([<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">1</span>]);</span><br><span class="line">test([<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>]);</span><br><span class="line">test([<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>]);</span><br><span class="line">test([<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">3</span>]);</span><br></pre></td></tr></table></figure>
   
-	</div>
+	 </div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
@@ -114,6 +119,7 @@
 </div>
 </footer>   	       
 	</article>
+  
 	
 <nav class="article-nav clearfix">
  
@@ -310,8 +316,9 @@ $(document).ready(function(){
    ae.wrap('<div class="video-container" />');
   };
   if(ah.length==0){
-    t.css('display','none');
-  }else{
+//    t.css('display','none');
+  }
+  else{
     c.click(function(){
       ta.css('display', 'block').addClass('fadeIn');
     });

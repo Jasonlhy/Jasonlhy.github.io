@@ -47,6 +47,10 @@
 					
 						<li><a href="/archives">Archives</a></li>
 					
+						<li><a href="/about.html">About</a></li>
+					
+						<li><a href="/useful_website.html">Useful Website</a></li>
+					
 					<li>
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
@@ -75,7 +79,7 @@
     </p>
   <p class="article-time">
     <time datetime="2015-10-09T06:54:11.000Z" itemprop="datePublished">2015-10-09</time>
-    更新日期:<time datetime="2015-11-16T17:13:03.000Z" itemprop="dateModified">2015-11-17</time>
+    更新日期:<time datetime="2016-01-10T20:51:58.000Z" itemprop="dateModified">2016-01-11</time>
     
   </p>
 </header>
@@ -87,10 +91,11 @@
 		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What_happened__3F"><span class="toc-number">1.</span> <span class="toc-text">What happened ?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#A_simple_solution"><span class="toc-number">2.</span> <span class="toc-text">A simple solution</span></a></li></ol>
 		</div>
 		
+
 		<h1 id="What_happened__3F"><a href="#What_happened__3F" class="headerlink" title="What happened ?"></a>What happened ?</h1><p>I just upgraded to El Capitan, and I installed the package with the package manager from the official website. After that I typed in ghci in terminal, but it turned out: command not found. I checked the documentation which states: Executables are symlinked in <code>/usr/local/bin</code> and should be available in any shell. It seems that the problem is caused by <code>/usr/local/bin</code> which is missing from the beginning.</p>
 <h1 id="A_simple_solution"><a href="#A_simple_solution" class="headerlink" title="A simple solution"></a>A simple solution</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">Use</span> /<span class="keyword">Library</span>/Haskell/<span class="keyword">bin</span>/<span class="keyword">uninstall</span>-hs <span class="keyword">to</span> remove the installed packages</span><br><span class="line">cd /usr/<span class="keyword">local</span></span><br><span class="line">mkdir <span class="keyword">bin</span></span><br><span class="line"><span class="keyword">install</span> the packages again</span></span><br></pre></td></tr></table></figure>
   
-	</div>
+	 </div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
@@ -114,6 +119,7 @@
 </div>
 </footer>   	       
 	</article>
+  
 	
 <nav class="article-nav clearfix">
  
@@ -310,8 +316,9 @@ $(document).ready(function(){
    ae.wrap('<div class="video-container" />');
   };
   if(ah.length==0){
-    t.css('display','none');
-  }else{
+//    t.css('display','none');
+  }
+  else{
     c.click(function(){
       ta.css('display', 'block').addClass('fadeIn');
     });
