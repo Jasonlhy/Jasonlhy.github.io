@@ -1,0 +1,446 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Play framework 表格提交 | Jason小小日記</title>	
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+  	
+    
+    
+    <meta name="author" content="Jason Liu">
+    
+    <meta name="description" content="環境設定
+PlayFramework: v2.4.6
+scala : 2.11.6
+
+先import 以下123import play.api.data._import play.api.data.Forms._import play.api.data.format.Formats._
+先定義一個c">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <!-- Google Font -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Jason小小日記" title="Jason小小日記"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Jason小小日記">Jason小小日記</a></h1>
+				<h2 class="blog-motto">紀錄生活中無聊事</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about.html">About</a></li>
+					
+						<li><a href="/useful_website.html">Useful Website</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:jasonlhy.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/01/21/form-submission-in-Play/" title="Play framework 表格提交" itemprop="url">Play framework 表格提交</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://jasonlhy.github.io" title="Jason Liu">Jason Liu</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2016-01-20T17:46:46.000Z" itemprop="datePublished">2016-01-21</time>
+    更新日期:<time datetime="2016-01-20T21:09:43.000Z" itemprop="dateModified">2016-01-21</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u74B0_u5883_u8A2D_u5B9A"><span class="toc-number">1.</span> <span class="toc-text">環境設定</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u5148_u5B9A_u7FA9_u4E00_u500Bcase_class"><span class="toc-number">2.</span> <span class="toc-text">先定義一個case class</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u7136_u5F8C_u5B9A_u7FA9_u4E00_u500BForm"><span class="toc-number">3.</span> <span class="toc-text">然後定義一個Form</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#apply__u548Cunapply__u7684_u4F5C_u7528"><span class="toc-number">3.1.</span> <span class="toc-text">apply 和unapply 的作用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GET_Request"><span class="toc-number">4.</span> <span class="toc-text">GET Request</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Test_with_Curl"><span class="toc-number">4.1.</span> <span class="toc-text">Test with Curl</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#POST_Request"><span class="toc-number">5.</span> <span class="toc-text">POST Request</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Test_with_curl"><span class="toc-number">5.1.</span> <span class="toc-text">Test with curl</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reference"><span class="toc-number">6.</span> <span class="toc-text">Reference</span></a></li></ol>
+		</div>
+		
+
+		<h1 id="u74B0_u5883_u8A2D_u5B9A"><a href="#u74B0_u5883_u8A2D_u5B9A" class="headerlink" title="環境設定"></a>環境設定</h1><ul>
+<li>PlayFramework: v2.4.6</li>
+<li>scala : 2.11.6</li>
+</ul>
+<p>先import 以下<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> play.api.data._</span><br><span class="line"><span class="keyword">import</span> play.api.data.<span class="type">Forms</span>._</span><br><span class="line"><span class="keyword">import</span> play.api.data.format.<span class="type">Formats</span>._</span><br></pre></td></tr></table></figure></p>
+<h1 id="u5148_u5B9A_u7FA9_u4E00_u500Bcase_class"><a href="#u5148_u5B9A_u7FA9_u4E00_u500Bcase_class" class="headerlink" title="先定義一個case class"></a>先定義一個case class</h1><p>case class 的作用是用來encapsulate 提交的資料為一個object, 正式名稱為<a href="https://en.wikipedia.org/wiki/Algebraic_data_type" target="_blank" rel="external">Algebraic data type
+</a>, 將data 定義為不同結溝和不同value，以下例子為Haskell</p>
+<ul>
+<li><code>data Bool = False | True</code></li>
+<li><code>data Maybe a = Nothing | Just a</code></li>
+</ul>
+<blockquote><p>an algebraic data type is a kind of composite type, i.e. a type formed by combining other types</p>
+</blockquote>
+<p>回到play中，加入<code>case class User(name: String, password: String)</code><br>這定義User 有兩個String field, 當中有當中有name 和password，是否很像c中的struct, 但scala 中的Algebraic data type不只case class, <code>Option</code>也是其中一種</p>
+<h1 id="u7136_u5F8C_u5B9A_u7FA9_u4E00_u500BForm"><a href="#u7136_u5F8C_u5B9A_u7FA9_u4E00_u500BForm" class="headerlink" title="然後定義一個Form"></a>然後定義一個Form</h1><p>定義一個form 實現如何把form的parameter blind to the case class</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">val userForm = Form<span class="list">(</span><br><span class="line">  <span class="keyword">mapping</span><span class="list">(</span><br><span class="line">    <span class="string">"name"</span> -&gt; of[String],</span><br><span class="line">    <span class="string">"password"</span> -&gt; of[String]</span><br><span class="line">  )</span><span class="list">(<span class="keyword">User</span>.apply)</span><span class="list">(<span class="keyword">User</span>.unapply)</span></span><br><span class="line">)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>表格中的”name” 為String</li>
+<li>表格中的”password” 為String</li>
+</ul>
+<h2 id="apply__u548Cunapply__u7684_u4F5C_u7528"><a href="#apply__u548Cunapply__u7684_u4F5C_u7528" class="headerlink" title="apply 和unapply 的作用"></a>apply 和unapply 的作用</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="function"><span class="title">User</span><span class="params">(<span class="string">"jason"</span>, <span class="string">"password"</span>)</span></span></span><br><span class="line">res6: User = <span class="function"><span class="title">User</span><span class="params">(jason,password)</span></span></span><br><span class="line"></span><br><span class="line">scala&gt; :t User<span class="class">.unapply</span> _</span><br><span class="line">User =&gt; Option[(String, String)]</span><br><span class="line"></span><br><span class="line">scala&gt; User.<span class="function"><span class="title">unapply</span><span class="params">(User(<span class="string">"jason"</span>, <span class="string">"password"</span>)</span></span>)</span><br><span class="line">res8: Option[(String, String)] = <span class="function"><span class="title">Some</span><span class="params">((jason,password)</span></span>)</span><br></pre></td></tr></table></figure>
+<p><code>User.apply</code> 是用作創建新instance of the User<br><code>User.unapply</code> 是用作extract 資料，用作patten matching (match &amp; case)</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// <span class="keyword">when</span> u <span class="keyword">is</span> a <span class="type">User</span></span><br><span class="line">// u <span class="keyword">is</span> <span class="type">User</span>(jason,password)</span><br><span class="line">// <span class="type">User</span>(name, password) actually calls `<span class="type">User</span>.unapply(u)` which extract the data inside <span class="keyword">with</span> <span class="keyword">return</span> value: <span class="type">Some</span>(name, password)</span><br><span class="line">// therefore unapply <span class="keyword">method</span> <span class="keyword">is</span> called extractor pattern</span><br><span class="line">u match &#123;</span><br><span class="line">  <span class="keyword">case</span> <span class="type">User</span>(name, password) =&gt; println(<span class="string">s"u is consist of $name and $password"</span>) </span><br><span class="line">  <span class="keyword">case</span> _ =&gt; println(<span class="string">"not matched"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// <span class="keyword">when</span> o <span class="keyword">is</span> <span class="type">Option</span></span><br><span class="line">// o: <span class="type">Option</span>[(<span class="type">String</span>, <span class="type">String</span>)] = <span class="type">Some</span>((jason,password))</span><br><span class="line">o match &#123;</span><br><span class="line">  <span class="keyword">case</span> <span class="type">Some</span>((name, password)) =&gt; println(<span class="string">s"u is consist of $name and $password"</span>) </span><br><span class="line">  <span class="keyword">case</span> <span class="type">None</span> =&gt; println(<span class="string">"no user is found "</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="GET_Request"><a href="#GET_Request" class="headerlink" title="GET Request"></a>GET Request</h1><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login</span> =</span> <span class="type">Action</span>(parse.form(userForm)) &#123; request =&gt;</span><br><span class="line">  <span class="type">Logger</span>.debug(<span class="string">"User logining"</span>)</span><br><span class="line">  <span class="keyword">val</span> user = request.body;</span><br><span class="line">  <span class="type">Ok</span>(<span class="string">"Got: "</span> + s<span class="string">"User name: $&#123;user.name&#125;, User password: $&#123;user.password&#125;"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>request.body 裡就是User了<br>Result (content type: text/plain)<br>Got: request.body.class: class controllers.UserController$User User name: jason, User password: text</p>
+<h2 id="Test_with_Curl"><a href="#Test_with_Curl" class="headerlink" title="Test with Curl"></a>Test with Curl</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl --data http://localhost:<span class="number">9000</span>/api/user/login2 \</span><br><span class="line">      name=jason&amp;password=password</span><br></pre></td></tr></table></figure> 
+<h1 id="POST_Request"><a href="#POST_Request" class="headerlink" title="POST Request"></a>POST Request</h1><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login2</span> =</span> <span class="type">Action</span>(parse.urlFormEncoded) &#123; <span class="keyword">implicit</span> request =&gt;</span><br><span class="line">   <span class="comment">/* Approach 1</span><br><span class="line">   val body : Map[String, Seq[String]]= request.body;</span><br><span class="line">   val mapping : Map[String, String] = body.mapValues(_.mkString)</span><br><span class="line"></span><br><span class="line">   val user = userForm.bind(mapping).get;</span><br><span class="line">   */</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">/* Approach 2</span><br><span class="line">   val user = userForm.bindFromRequest().get;</span><br><span class="line">   */</span></span><br><span class="line">   </span><br><span class="line">   <span class="comment">/* Approach 3*/</span></span><br><span class="line">   <span class="keyword">val</span> user = userForm.bindFromRequest(request.body).get</span><br><span class="line"></span><br><span class="line">   <span class="comment">// var user = userForm..get;</span></span><br><span class="line">   <span class="type">Ok</span>(s<span class="string">"Got User name: $&#123;user.name&#125;, User password: $&#123;user.password&#125;"</span>);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>比較麻煩 需要把mapping 轉做form然後再map做base class</p>
+<h2 id="Test_with_curl"><a href="#Test_with_curl" class="headerlink" title="Test with curl"></a>Test with curl</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -H <span class="string">"Content-Type:application/x-www-form-urlencoded"</span> \</span><br><span class="line"> <span class="operator">-d</span> <span class="string">'name=jason&amp;password=password'</span> \</span><br><span class="line">http://localhost:<span class="number">9000</span>/api/user/login2</span><br></pre></td></tr></table></figure>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a href="http://chris-taylor.github.io/blog/2013/02/10/the-algebra-of-algebraic-data-types/" target="_blank" rel="external">Introudction of algebraic data In Haskell  types</a></li>
+<li><a href="http://danielwestheide.com/blog/2012/11/21/the-neophytes-guide-to-scala-part-1-extractors.html" target="_blank" rel="external">Introduction of Extractor patern</a></li>
+<li><a href="http://danielwestheide.com/blog/2012/12/19/the-neophytes-guide-to-scala-part-5-the-option-type.html" target="_blank" rel="external">Introduction of Option</a></li>
+</ul>
+  
+	 </div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Play/">Play</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Note/">Note</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://jasonlhy.github.io/2016/01/21/form-submission-in-Play/" data-title="Play framework 表格提交 | Jason小小日記" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+  
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/01/20/import-in-scala/"  title="import(匯入) in scala">
+ <strong>NEXT:</strong><br/> 
+ <span>import(匯入) in scala
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comment">
+  <h1 class="title">文章評論</h1>
+
+  
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+  
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u74B0_u5883_u8A2D_u5B9A"><span class="toc-number">1.</span> <span class="toc-text">環境設定</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u5148_u5B9A_u7FA9_u4E00_u500Bcase_class"><span class="toc-number">2.</span> <span class="toc-text">先定義一個case class</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u7136_u5F8C_u5B9A_u7FA9_u4E00_u500BForm"><span class="toc-number">3.</span> <span class="toc-text">然後定義一個Form</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#apply__u548Cunapply__u7684_u4F5C_u7528"><span class="toc-number">3.1.</span> <span class="toc-text">apply 和unapply 的作用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GET_Request"><span class="toc-number">4.</span> <span class="toc-text">GET Request</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Test_with_Curl"><span class="toc-number">4.1.</span> <span class="toc-text">Test with Curl</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#POST_Request"><span class="toc-number">5.</span> <span class="toc-text">POST Request</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Test_with_curl"><span class="toc-number">5.1.</span> <span class="toc-text">Test with curl</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reference"><span class="toc-number">6.</span> <span class="toc-text">Reference</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分類</p>
+		<ul>
+		
+			<li><a href="/categories/Algorithm/" title="Algorithm">Algorithm<sup>8</sup></a></li>
+		
+			<li><a href="/categories/Daily-Life/" title="Daily Life">Daily Life<sup>1</sup></a></li>
+		
+			<li><a href="/categories/Note/" title="Note">Note<sup>5</sup></a></li>
+		
+			<li><a href="/categories/Problem/" title="Problem">Problem<sup>6</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/Code/" title="Code">Code<sup>3</sup></a></li>
+		
+			<li><a href="/tags/Dynamic-Programming/" title="Dynamic Programming">Dynamic Programming<sup>3</sup></a></li>
+		
+			<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Graph-Theory/" title="Graph Theory">Graph Theory<sup>3</sup></a></li>
+		
+			<li><a href="/tags/Greedy/" title="Greedy">Greedy<sup>3</sup></a></li>
+		
+			<li><a href="/tags/Gundam/" title="Gundam">Gundam<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Haskell/" title="Haskell">Haskell<sup>3</sup></a></li>
+		
+			<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>4</sup></a></li>
+		
+			<li><a href="/tags/Nightmare/" title="Nightmare">Nightmare<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Pacman/" title="Pacman">Pacman<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Play/" title="Play">Play<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Programming/" title="Programming">Programming<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Ruby/" title="Ruby">Ruby<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Scala/" title="Scala">Scala<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Slide/" title="Slide">Slide<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Sorting/" title="Sorting">Sorting<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Toy/" title="Toy">Toy<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		
+		
+		<a href="https://github.com/Jasonlhy" target="_blank" title="github"></a>
+		
+		
+		
+        <a href="https://www.linkedin.com/pub/jason-liu/80/aa7/6b8" target="_blank" title="linkedin"></a>
+        
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman, modified by Jason </a> © 2016 
+		
+		<a href="http://jasonlhy.github.io" target="_blank" title="Jason Liu">Jason Liu</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+//    t.css('display','none');
+  }
+  else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+    <script type="text/javascript">
+    var disqus_shortname = 'jasonlittlediary';
+
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+    </script>
+
+
+
+
+
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-69082428-1', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69082428-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+  </body>
+</html>
