@@ -4,14 +4,15 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>pacman首頁顯示混亂 | Jason小小日記</title>	
+    <title>import(匯入) in scala | Jason小小日記</title>	
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
   	
     
     
     <meta name="author" content="Jason Liu">
     
-    <meta name="description" itemprop="description" content="程式碼在pacman 主題首頁下顯示為一堆不明數字">
+    <meta name="description" content="Import(匯入) 在scala有很多方法
+最常用import jason.playground._匯入jason.playground package 底下的所有classes and object, 包括package object(package object 的所有member會以stat">
     
     
     
@@ -74,15 +75,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/10/20/pacman首頁顯示混亂/" title="pacman首頁顯示混亂" itemprop="url">pacman首頁顯示混亂</a>
+      <a href="/2016/01/20/import-in-scala/" title="import(匯入) in scala" itemprop="url">import(匯入) in scala</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://jasonlhy.github.io" title="Jason Liu">Jason Liu</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-10-19T20:45:28.000Z" itemprop="datePublished">2015-10-20</time>
-    更新日期:<time datetime="2015-11-16T17:13:17.000Z" itemprop="dateModified">2015-11-17</time>
+    <time datetime="2016-01-20T13:00:20.000Z" itemprop="datePublished">2016-01-20</time>
+    更新日期:<time datetime="2016-01-20T17:43:33.000Z" itemprop="dateModified">2016-01-21</time>
     
   </p>
 </header>
@@ -91,37 +92,41 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u539F_u56E0"><span class="toc-number">1.</span> <span class="toc-text">原因</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u89E3_u6C7A_u8FA8_u6CD5_uFF1A"><span class="toc-number">2.</span> <span class="toc-text">解決辨法：</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u6700_u5E38_u7528"><span class="toc-number">1.</span> <span class="toc-text">最常用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u532F_u5165_u7279_u5B9Aclass_u7684member"><span class="toc-number">2.</span> <span class="toc-text">匯入特定class的member</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u4F8B_u5B50"><span class="toc-number">3.</span> <span class="toc-text">例子</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Play_Framework__u532F_u5165_u61C9_u7528"><span class="toc-number">3.1.</span> <span class="toc-text">Play Framework 匯入應用</span></a></li></ol></li></ol>
 		</div>
 		
 
-		<p>剛安裝了pacman 主題, 可是程式碼在首頁亂作一團…<br><img src="/2015/10/20/pacman首頁顯示混亂/messy.png" alt="messy.png" title=""></p>
-<hr>
-<h1 id="u539F_u56E0"><a href="#u539F_u56E0" class="headerlink" title="原因"></a>原因</h1><p>看了template 的source code 才發現首頁會使用一個description 的attribute，否則就會strip_html(item.content)…難怪亂作一團。以前的tutorial 好像很多都叫人使用description 這個attribute，但官方文件卻沒有說明…<br><img src="/2015/10/20/pacman首頁顯示混亂/source.png" alt="source.png" title=""></p>
-<h1 id="u89E3_u6C7A_u8FA8_u6CD5_uFF1A"><a href="#u89E3_u6C7A_u8FA8_u6CD5_uFF1A" class="headerlink" title="解決辨法："></a>解決辨法：</h1><ol>
-<li>在post 的最上加上description</li>
-<li>改template</li>
-</ol>
+		<p>Import(匯入) 在scala有很多方法</p>
+<h1 id="u6700_u5E38_u7528"><a href="#u6700_u5E38_u7528" class="headerlink" title="最常用"></a>最常用</h1><p><code>import jason.playground._</code><br>匯入jason.playground package 底下的所有classes and object, 包括package object(package object 的所有member會以static 方面匯入)</p>
+<h1 id="u532F_u5165_u7279_u5B9Aclass_u7684member"><a href="#u532F_u5165_u7279_u5B9Aclass_u7684member" class="headerlink" title="匯入特定class的member"></a>匯入特定class的member</h1><p><code>import jason.playground.JasonPhone._</code><br>匯入jason.playground.Jason 底下的所有member</p>
+<h1 id="u4F8B_u5B50"><a href="#u4F8B_u5B50" class="headerlink" title="例子"></a>例子</h1><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">package jason.playground</span><br><span class="line"></span><br><span class="line"><span class="keyword">object</span> <span class="type">JasonPhone</span> &#123;</span><br><span class="line">  def name() = <span class="string">"Iphone 6"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">package jason</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> jason.playground.<span class="type">JasonPhone</span></span><br><span class="line"></span><br><span class="line">package <span class="keyword">object</span> playground &#123;</span><br><span class="line">  // <span class="keyword">static</span> <span class="keyword">method</span> to be imported into class</span><br><span class="line">  def getName() = <span class="string">"Iphone 6 (from helper method)"</span></span><br><span class="line"></span><br><span class="line">  // align to another <span class="keyword">object</span>'s <span class="keyword">method</span></span><br><span class="line">  def nameFromPackageObject() = <span class="type">JasonPhone</span>.name()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">package jason.program</span><br><span class="line"></span><br><span class="line">// this line <span class="keyword">import</span> classes &amp; <span class="keyword">object</span> under jason.playground (<span class="keyword">not</span> recurisly)</span><br><span class="line"><span class="keyword">import</span> jason.playground._;</span><br><span class="line"></span><br><span class="line">// this line <span class="keyword">import</span> <span class="string">"members"</span> under jason.playground.<span class="type">JasonPhone</span></span><br><span class="line">// ~ <span class="keyword">import</span> <span class="keyword">static</span> <span class="keyword">in</span> <span class="type">Java</span></span><br><span class="line"><span class="keyword">import</span> jason.playground.<span class="type">JasonPhone</span>._;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">  * <span class="type">Created</span> by <span class="type">Jason</span> on <span class="number">1</span>/<span class="number">20</span>/<span class="number">16</span>.</span><br><span class="line">  */</span><br><span class="line"><span class="keyword">object</span> <span class="type">Main</span> &#123;</span><br><span class="line">  def main(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line">    println(<span class="string">"I am using: "</span> + <span class="type">JasonPhone</span>.name()) // this <span class="keyword">is</span> declared <span class="keyword">in</span> <span class="type">JasonPhone</span>.scala</span><br><span class="line">    println(<span class="string">"I am using: "</span> + nameFromPackageObject()); // this <span class="keyword">is</span> declared <span class="keyword">in</span> package.scala</span><br><span class="line">    println(<span class="string">"I am using: "</span> + name()); // this <span class="keyword">is</span> a short cut <span class="keyword">with</span> <span class="keyword">static</span> <span class="keyword">import</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>JasonPhone.name()</code> 由匯入<code>jason.playground._</code> 而來</li>
+<li><code>nameFromPackageObject()</code> 由匯入<code>jason.playground._</code> 而來，是package object裡的method</li>
+<li><code>name()</code> 由static匯入 <code>jason.playground.JasonPhone._</code>而來，不用打JasonPhone作為prefix</li>
+</ul>
+<h2 id="Play_Framework__u532F_u5165_u61C9_u7528"><a href="#Play_Framework__u532F_u5165_u61C9_u7528" class="headerlink" title="Play Framework 匯入應用"></a>Play Framework 匯入應用</h2><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">val userForm = Form<span class="list">(</span><br><span class="line">  <span class="keyword">mapping</span><span class="list">(</span><br><span class="line">    <span class="string">"name"</span> -&gt; of[String],</span><br><span class="line">    <span class="string">"age"</span> -&gt; of[Int],</span><br><span class="line">    <span class="string">"email"</span> -&gt; of[String]</span><br><span class="line">  )</span><span class="list">(<span class="keyword">User</span>.apply)</span><span class="list">(<span class="keyword">User</span>.unapply)</span></span><br><span class="line">)</span></span><br></pre></td></tr></table></figure>
+<p><code>of</code> 由匯入<code>play.api.data.Forms._</code> 得來, <code>Forms</code>是一個object定義helper methods</p>
   
 	 </div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Hexo/">Hexo</a><a href="/tags/Pacman/">Pacman</a>
+  <span></span> <a href="/tags/Scala/">Scala</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Problem/">Problem</a>
+  <a class="article-category-link" href="/categories/Note/">Note</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://jasonlhy.github.io/2015/10/20/pacman首頁顯示混亂/" data-title="pacman首頁顯示混亂 | Jason小小日記" data-tsina="null" class="share clearfix">
+  <div data-url="http://jasonlhy.github.io/2016/01/20/import-in-scala/" data-title="import(匯入) in scala | Jason小小日記" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -131,19 +136,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/10/20/在hexo-3-插入圖片/" title="在hexo 3 插入圖片">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  在hexo 3 插入圖片</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/10/19/新主題第一貼/"  title="新主題第一貼 - Quick sort">
+<a href="/2016/01/11/初試Scala/"  title="初試Scala">
  <strong>NEXT:</strong><br/> 
- <span>新主題第一貼 - Quick sort
+ <span>初試Scala
 </span>
 </a>
 </div>
@@ -167,7 +164,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u539F_u56E0"><span class="toc-number">1.</span> <span class="toc-text">原因</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u89E3_u6C7A_u8FA8_u6CD5_uFF1A"><span class="toc-number">2.</span> <span class="toc-text">解決辨法：</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u6700_u5E38_u7528"><span class="toc-number">1.</span> <span class="toc-text">最常用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u532F_u5165_u7279_u5B9Aclass_u7684member"><span class="toc-number">2.</span> <span class="toc-text">匯入特定class的member</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u4F8B_u5B50"><span class="toc-number">3.</span> <span class="toc-text">例子</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Play_Framework__u532F_u5165_u61C9_u7528"><span class="toc-number">3.1.</span> <span class="toc-text">Play Framework 匯入應用</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
