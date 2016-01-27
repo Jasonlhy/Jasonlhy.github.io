@@ -4,15 +4,14 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>一些javascript object筆記 | Jason小小日記</title>	
+    <title>javascript object筆記 | Jason小小日記</title>	
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
   	
     
     
     <meta name="author" content="Jason Liu">
     
-    <meta name="description" content="Objectjavascript的object是key-value pair因此key有時會被叫作property, member, etc…value 可以是integer, true, false, function, etc 
-√ 定義123456var object = &amp;#123;&amp;#12">
+    <meta name="description" itemprop="description" content="記錄一些javascript object用法和注意地方">
     
     
     
@@ -75,7 +74,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/01/27/javascript-object-note/" title="一些javascript object筆記" itemprop="url">一些javascript object筆記</a>
+      <a href="/2016/01/27/javascript-object-note/" title="javascript object筆記" itemprop="url">javascript object筆記</a>
   </h1>
   <p class="article-author">By
     
@@ -83,7 +82,7 @@
     </p>
   <p class="article-time">
     <time datetime="2016-01-26T23:20:42.000Z" itemprop="datePublished">2016-01-27</time>
-    更新日期:<time datetime="2016-01-27T18:41:19.000Z" itemprop="dateModified">2016-01-28</time>
+    更新日期:<time datetime="2016-01-27T18:49:24.000Z" itemprop="dateModified">2016-01-28</time>
     
   </p>
 </header>
@@ -100,9 +99,9 @@
 <h2 id="u221A__u5B9A_u7FA9"><a href="#u221A__u5B9A_u7FA9" class="headerlink" title="√ 定義"></a>√ 定義</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> object = &#123;&#125; <span class="comment">// empty object</span></span><br><span class="line"><span class="keyword">var</span> object = &#123; name : my_nickname &#125; <span class="comment">// my_nickanme is the defined variable</span></span><br><span class="line"><span class="keyword">var</span> object = &#123; <span class="string">'name'</span> : <span class="string">"jason"</span> , <span class="string">'job'</span> : <span class="string">"sutdent"</span> &#125;   <span class="comment">// hv ''</span></span><br><span class="line"><span class="keyword">var</span> object = &#123; name : <span class="string">"jason"</span>, job : <span class="string">"student"</span> &#125;     <span class="comment">// no ''</span></span><br><span class="line"><span class="keyword">var</span> object = &#123; 名字 : <span class="string">"jason"</span> &#125;     <span class="comment">// console.log(object.名字) -&gt; jason</span></span><br><span class="line"><span class="keyword">var</span> object = &#123; nick_name : <span class="string">"jason"</span> &#125;     <span class="comment">// console.log(object.nick_name) -&gt; jason</span></span><br></pre></td></tr></table></figure>
 <h2 id="u2718__u5B9A_u7FA9"><a href="#u2718__u5B9A_u7FA9" class="headerlink" title="✘ 定義"></a>✘ 定義</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> object = &#123; my name : <span class="string">"jason"</span> &#125; <span class="comment">// key 如有空格要''</span></span><br><span class="line"><span class="keyword">var</span> object = &#123; nick-name : <span class="string">"jason"</span> &#125; <span class="comment">// key 如有-要''</span></span><br></pre></td></tr></table></figure>
 <h2 id="u5B58_u53D6Object_u6210_u54E1_28Access_object_u2019s_property_29"><a href="#u5B58_u53D6Object_u6210_u54E1_28Access_object_u2019s_property_29" class="headerlink" title="存取Object成員(Access object’s property)"></a>存取Object成員(Access object’s property)</h2><p>利用<code>.</code>作分隔，注意提取未定義的property 會回傳undefined value<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> object = &#123; name : <span class="string">"jason"</span> &#125;;</span><br><span class="line">object.name <span class="comment">// jason</span></span><br><span class="line">object.age <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure></p>
-<p>OR 利用<code>[]</code> (Object literal), 特別適用於有-的key<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="class"><span class="keyword">object</span> =</span> &#123; <span class="string">"my-name"</span>: <span class="string">"jason"</span>, <span class="string">"image-list"</span> : <span class="string">"image.png"</span> &#125;;</span><br><span class="line"><span class="class"><span class="keyword">object</span>.<span class="title">image-list</span>;</span> <span class="comment">// reference error: list</span></span><br><span class="line"><span class="class"><span class="keyword">object</span>.<span class="title">my-name</span>;</span> <span class="comment">// NaN</span></span><br><span class="line"><span class="class"><span class="keyword">object</span>[</span><span class="string">"my-name"</span>]; <span class="comment">// jason</span></span><br></pre></td></tr></table></figure></p>
 <p>因此可以利用undefined value 檢查某object 成員有沒有被定義<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">object.name === <span class="literal">undefined</span> <span class="comment">// false</span></span><br><span class="line">object.age === <span class="literal">undefined</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
-<p>但可以隋意新加成員<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> object = &#123; name : <span class="string">"jason"</span> &#125;;</span><br><span class="line">object.nickname = <span class="string">"tresa"</span>;</span><br><span class="line">object.nickname; <span class="comment">// "tresa"</span></span><br></pre></td></tr></table></figure></p>
+<p>也可以利用<code>[]</code> (Object literal), 適用於有-的key<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="class"><span class="keyword">object</span> =</span> &#123; <span class="string">"my-name"</span>: <span class="string">"jason"</span>, <span class="string">"image-list"</span> : <span class="string">"image.png"</span> &#125;;</span><br><span class="line"><span class="class"><span class="keyword">object</span>.<span class="title">image-list</span>;</span> <span class="comment">// reference error: list</span></span><br><span class="line"><span class="class"><span class="keyword">object</span>.<span class="title">my-name</span>;</span> <span class="comment">// NaN</span></span><br><span class="line"><span class="class"><span class="keyword">object</span>[</span><span class="string">"my-name"</span>]; <span class="comment">// jason</span></span><br></pre></td></tr></table></figure></p>
+<p>Object 可以隋意新加成員<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> object = &#123; name : <span class="string">"jason"</span> &#125;;</span><br><span class="line">object.nickname = <span class="string">"tresa"</span>;</span><br><span class="line">object.nickname; <span class="comment">// "tresa"</span></span><br></pre></td></tr></table></figure></p>
 <h1 id="u6AA2_u67E5type"><a href="#u6AA2_u67E5type" class="headerlink" title="檢查type"></a>檢查type</h1><p>Javascript 使用String定義type<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="class"><span class="keyword">object</span> =</span> &#123; name : <span class="string">"jason"</span> &#125;;</span><br><span class="line">typeof <span class="class"><span class="keyword">object</span>;</span> <span class="comment">// "object"</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="u6AA2_u67E5Array"><a href="#u6AA2_u67E5Array" class="headerlink" title="檢查Array"></a>檢查Array</h2><p>不過Array的type也是’object’, 但可以利用Array.isArray()檢查 (ECMAScript &gt;= 5)<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var<span class="instruction"> array </span>= <span class="keyword">[</span><span class="string">"jason"</span>, <span class="string">"object"</span>]</span><br><span class="line">typeof array; // <span class="string">"object"</span> </span><br><span class="line">Array.isArray(array<span class="function">)</span> // true</span><br></pre></td></tr></table></figure></p>
 <h2 id="u6AA2_u67E5_u4E00_u500Bvariable__u6709_u6C92_u6709value"><a href="#u6AA2_u67E5_u4E00_u500Bvariable__u6709_u6C92_u6709value" class="headerlink" title="檢查一個variable 有沒有value"></a>檢查一個variable 有沒有value</h2><p>可以利用typeof 去避免ReferenceError: Can’t find variable: list<br>注意: 所有variable 即使定義了，沒有acess前value都是undefined</p>
@@ -127,7 +126,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="http://jasonlhy.github.io/2016/01/27/javascript-object-note/" data-title="一些javascript object筆記 | Jason小小日記" data-tsina="null" class="share clearfix">
+  <div data-url="http://jasonlhy.github.io/2016/01/27/javascript-object-note/" data-title="javascript object筆記 | Jason小小日記" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
