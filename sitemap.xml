@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://jasonlhy.github.io/about.html</loc>
+    <lastmod>2016-02-22T17:38:20.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://jasonlhy.github.io/2016/02/14/Scala-flatten-flatMap/</loc>
     <lastmod>2016-02-13T23:41:31.000Z</lastmod>
   </url>
@@ -24,11 +29,6 @@
   <url>
     <loc>http://jasonlhy.github.io/2016/01/26/play-anorm/</loc>
     <lastmod>2016-01-26T02:22:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://jasonlhy.github.io/about.html</loc>
-    <lastmod>2016-01-26T00:29:33.000Z</lastmod>
   </url>
   
   <url>
