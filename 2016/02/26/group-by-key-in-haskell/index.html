@@ -4,14 +4,15 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Shortest Path Algorithm | Jason小小日記</title>	
+    <title>group by key in haskell | Jason小小日記</title>	
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
   	
     
     
     <meta name="author" content="Jason Liu">
     
-    <meta name="description" content="RelaxationEach point has a known distance so far, if a vertex + distance to a particular point is shorter than the known distance of the point, update">
+    <meta name="description" content="什麼是Group By KeyGroup By Key 就是把Element 計算一個key，相同key的element 就放左一組內例如group by key by the reminder equal to 3 in Scala
+123val arr = Array(2, 4, 5, 6, 9">
     
     
     
@@ -74,15 +75,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/12/13/Shortest-Path-Algorithm/" title="Shortest Path Algorithm" itemprop="url">Shortest Path Algorithm</a>
+      <a href="/2016/02/26/group-by-key-in-haskell/" title="group by key in haskell" itemprop="url">group by key in haskell</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://jasonlhy.github.io" title="Jason Liu">Jason Liu</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-12-13T09:04:29.000Z" itemprop="datePublished">2015-12-13</time>
-    更新日期:<time datetime="2015-12-13T13:04:46.000Z" itemprop="dateModified">2015-12-13</time>
+    <time datetime="2016-02-25T17:28:28.000Z" itemprop="datePublished">2016-02-26</time>
+    更新日期:<time datetime="2016-02-25T17:45:25.000Z" itemprop="dateModified">2016-02-26</time>
     
   </p>
 </header>
@@ -91,69 +92,39 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Relaxation"><span class="toc-number">1.</span> <span class="toc-text">Relaxation</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dijkstra_Algorithm"><span class="toc-number">2.</span> <span class="toc-text">Dijkstra Algorithm</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Running_time"><span class="toc-number">2.1.</span> <span class="toc-text">Running time</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Limitation"><span class="toc-number">2.2.</span> <span class="toc-text">Limitation</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Bellman-Ford_Algorithm"><span class="toc-number">3.</span> <span class="toc-text">Bellman-Ford Algorithm</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Running_time_analysis"><span class="toc-number">3.1.</span> <span class="toc-text">Running time analysis</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u4EC0_u9EBC_u662FGroup_By_Key"><span class="toc-number">1.</span> <span class="toc-text">什麼是Group By Key</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u554F_u984C"><span class="toc-number">2.</span> <span class="toc-text">問題</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u89E3_u6C7A_u65B9_u6CD51"><span class="toc-number">2.1.</span> <span class="toc-text">解決方法1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u89E3_u6C7A_u65B9_u6CD52"><span class="toc-number">2.2.</span> <span class="toc-text">解決方法2</span></a></li></ol></li></ol>
 		</div>
 		
 
-		<h1 id="Relaxation"><a href="#Relaxation" class="headerlink" title="Relaxation"></a>Relaxation</h1><p>Each point has a known distance so far, if a vertex + distance to a particular point is shorter than the known distance of the point, update it.<br>if (d[v] &gt; d[u] + w(u, v))<br>  d[v] = d[u] + w(u, v)</p>
-<h1 id="Dijkstra_Algorithm"><a href="#Dijkstra_Algorithm" class="headerlink" title="Dijkstra Algorithm"></a>Dijkstra Algorithm</h1><p>Extract min from the priority queue and relax its surroudning vertexes.</p>
-<p>The priority queue is implement with Fibonacci heap</p>
-<pre class="sample">
-  Initialize-single-source(G, S) // set all distance to infinity
-  S = {} // path 
-  Q = G.V
-  while (Q is not empty)
-    u = EXTRACT-MIN(Q)
-    S union u
-    for each vertex v in adj[u] // total E times
-      RELAX(u, v, w)
-</pre>
-
-<h2 id="Running_time"><a href="#Running_time" class="headerlink" title="Running time"></a>Running time</h2><p>while loop executes V times<br>EXTRACT-MIN take O(log V)<br>decrease key operation O(1) with total edges E times</p>
-<p>Overall Running time: <code>O(V log V + E)</code></p>
-<p>Naive method: O(V^2 + E), (linear search for EXTRACT-MIN)</p>
-<h2 id="Limitation"><a href="#Limitation" class="headerlink" title="Limitation"></a>Limitation</h2><p>Only applicable for graphs with positive edge</p>
-<h1 id="Bellman-Ford_Algorithm"><a href="#Bellman-Ford_Algorithm" class="headerlink" title="Bellman-Ford Algorithm"></a>Bellman-Ford Algorithm</h1><p>Suppose a path from source to destination at most contains V - 1 edges<br>It basically try to <em>relax every edges</em> in the path until you reach the destination<br>It is based on dynamic proramming, but without a successor table of each vertex.<br>  d[i, v] = d[i - 1, v]<br>  d[i, v] = min(d[i, v], min(i - 1, u) + w(u, v))</p>
-<pre class="sample">
-for i = 1 to V - 1
-  for each vertex u 
-  if (d[u] is updated)
-    for each vertex v in adj[u]
-       if (d[v] > d[u] + w(u, v))
-          d[v] = d[u] + w(u, v)
-          successor = u
-  if no value is change, break
-</pre>
-
-<p>It can also detect negative cycle</p>
-<pre class="sample">
-  for each edge(u, v)
-    if (d[u] + w(u, v) < d[v])
-       "negative cycle detected !!"
-</pre>
-
-
-<h2 id="Running_time_analysis"><a href="#Running_time_analysis" class="headerlink" title="Running time analysis"></a>Running time analysis</h2><p>Simply O(VE), memory space (V + E)</p>
+		<h1 id="u4EC0_u9EBC_u662FGroup_By_Key"><a href="#u4EC0_u9EBC_u662FGroup_By_Key" class="headerlink" title="什麼是Group By Key"></a>什麼是Group By Key</h1><p>Group By Key 就是把Element 計算一個key，相同key的element 就放左一組內<br>例如group by key by the reminder equal to 3 in Scala</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">val arr = Array(<span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">23</span>, <span class="number">24</span>, <span class="number">25</span>, <span class="number">31</span>, <span class="number">37</span>)</span><br><span class="line">scala&gt; val ans = arr.groupBy &#123; n =&gt; n % <span class="number">3</span> &#125;</span><br><span class="line">ans: scala.collection.immutable.Map[Int,Array[Int]] = Map(<span class="number">2</span> -&gt; Array(<span class="number">2</span>, <span class="number">5</span>, <span class="number">23</span>), <span class="number">1</span> -&gt; Array(<span class="number">4</span>, <span class="number">25</span>, <span class="number">31</span>, <span class="number">37</span>), <span class="number">0</span> -&gt; Array(<span class="number">6</span>, <span class="number">9</span>, <span class="number">24</span>))</span><br></pre></td></tr></table></figure>
+<h1 id="u554F_u984C"><a href="#u554F_u984C" class="headerlink" title="問題"></a>問題</h1><p>Haskell 中把 List 中的element Group By Key 是麻煩的一件事<br>因為<code>Data.List.groupBy</code> 是linear scan 每兩個element, 然後比較他們是否相同</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import Data.List</span><br><span class="line">Prelude Data.List&gt; groupBy (==) [<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>] </span><br><span class="line">[[<span class="number">1</span>,<span class="number">1</span>],[<span class="number">2</span>],[<span class="number">3</span>],[<span class="number">1</span>]]</span><br></pre></td></tr></table></figure>
+<h2 id="u89E3_u6C7A_u65B9_u6CD51"><a href="#u89E3_u6C7A_u65B9_u6CD51" class="headerlink" title="解決方法1"></a>解決方法1</h2><p>List 事前需要被sorted by key<br>Scala 的例子在Haskell 可以寫成這樣<br>值得注意<code>sortBy 要求data</code>Ordering<code>, 需要用</code>compare<code>, 不是</code>&gt;<code>`==</code> <code>&lt;</code> 它們會出Bool</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Prelude Data.List&gt; let allInOne = groupBy (\x y -&gt; (x `mod` <span class="number">3</span>) == (y `mod` <span class="number">3</span>)) . sortBy (\x y -&gt; compare (x `mod` <span class="number">3</span>) (y `mod` <span class="number">3</span>))</span><br><span class="line">Prelude Data.List&gt; allInOne [<span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">23</span>, <span class="number">24</span>, <span class="number">25</span>, <span class="number">31</span>, <span class="number">37</span>]</span><br><span class="line">[[<span class="number">6</span>,<span class="number">9</span>,<span class="number">24</span>],[<span class="number">4</span>,<span class="number">25</span>,<span class="number">31</span>,<span class="number">37</span>],[<span class="number">2</span>,<span class="number">5</span>,<span class="number">23</span>]]</span><br></pre></td></tr></table></figure>
+<h2 id="u89E3_u6C7A_u65B9_u6CD52"><a href="#u89E3_u6C7A_u65B9_u6CD52" class="headerlink" title="解決方法2"></a>解決方法2</h2><p><a href="https://hackage.haskell.org/package/utility-ht-0.0.11/docs/Data-List-Key.html" target="_blank" rel="external">一個package</a>解決這個問題, 當中的<code>groupBy</code> 是scala中的`groupByKey 但return 一個List</p>
+<p><strong>安裝</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="blockquote">&gt; cabal install utility-ht</span></span><br><span class="line"><span class="blockquote">&gt; ......</span></span><br><span class="line"><span class="blockquote">&gt; ghci</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>例子</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Prelude&gt; import Data.List.HT</span><br><span class="line">Prelude Data.List.HT&gt; let a = [<span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">23</span>, <span class="number">24</span>, <span class="number">25</span>, <span class="number">31</span>, <span class="number">37</span>]</span><br><span class="line">Prelude Data.List.HT&gt; groupBy (\x y -&gt; x `mod` <span class="number">3</span> == y `mod` <span class="number">3</span> )</span><br><span class="line">[[<span class="number">2</span>],[<span class="number">4</span>],[<span class="number">5</span>],[<span class="number">6</span>,<span class="number">9</span>],[<span class="number">23</span>],[<span class="number">24</span>],[<span class="number">25</span>,<span class="number">31</span>,<span class="number">37</span>]]</span><br></pre></td></tr></table></figure></p>
   
 	 </div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Dynamic-Programming/">Dynamic Programming</a><a href="/tags/Greedy/">Greedy</a>
+  <span></span> <a href="/tags/Haskell/">Haskell</a><a href="/tags/Programming/">Programming</a><a href="/tags/Scala/">Scala</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  <a class="article-category-link" href="/categories/Problem/">Problem</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://jasonlhy.github.io/2015/12/13/Shortest-Path-Algorithm/" data-title="Shortest Path Algorithm | Jason小小日記" data-tsina="null" class="share clearfix">
+  <div data-url="http://jasonlhy.github.io/2016/02/26/group-by-key-in-haskell/" data-title="group by key in haskell | Jason小小日記" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -163,19 +134,11 @@ for i = 1 to V - 1
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/12/13/Divide-and-Conquer/" title="Divide and Conquer">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  Divide and Conquer</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/12/13/Minimum-spanning-tree/"  title="Minimum spanning tree">
+<a href="/2016/02/23/parameter-passing/"  title="parameter passing">
  <strong>NEXT:</strong><br/> 
- <span>Minimum spanning tree
+ <span>parameter passing
 </span>
 </a>
 </div>
@@ -199,7 +162,7 @@ for i = 1 to V - 1
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Relaxation"><span class="toc-number">1.</span> <span class="toc-text">Relaxation</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dijkstra_Algorithm"><span class="toc-number">2.</span> <span class="toc-text">Dijkstra Algorithm</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Running_time"><span class="toc-number">2.1.</span> <span class="toc-text">Running time</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Limitation"><span class="toc-number">2.2.</span> <span class="toc-text">Limitation</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Bellman-Ford_Algorithm"><span class="toc-number">3.</span> <span class="toc-text">Bellman-Ford Algorithm</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Running_time_analysis"><span class="toc-number">3.1.</span> <span class="toc-text">Running time analysis</span></a></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u4EC0_u9EBC_u662FGroup_By_Key"><span class="toc-number">1.</span> <span class="toc-text">什麼是Group By Key</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u554F_u984C"><span class="toc-number">2.</span> <span class="toc-text">問題</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u89E3_u6C7A_u65B9_u6CD51"><span class="toc-number">2.1.</span> <span class="toc-text">解決方法1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u89E3_u6C7A_u65B9_u6CD52"><span class="toc-number">2.2.</span> <span class="toc-text">解決方法2</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
