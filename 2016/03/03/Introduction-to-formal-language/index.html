@@ -4,14 +4,14 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Shortest Path Algorithm | Jason小小日記</title>	
+    <title>Introduction to formal language | Jason小小日記</title>	
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
   	
     
     
     <meta name="author" content="Jason Liu">
     
-    <meta name="description" content="RelaxationEach point has a known distance so far, if a vertex + distance to a particular point is shorter than the known distance of the point, update">
+    <meta name="description" content="前言在很久很久以前，數學家門研究怎樣產生電腦，和研究怎樣令電腦運作這門的學問叫Theory of computation (真的是theory, 因為都是抽象的電腦)當中有兩個分支Automata theory: 研究機械怎樣計算Formal language: 研究language, langua">
     
     
     
@@ -74,15 +74,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/12/13/Shortest-Path-Algorithm/" title="Shortest Path Algorithm" itemprop="url">Shortest Path Algorithm</a>
+      <a href="/2016/03/03/Introduction-to-formal-language/" title="Introduction to formal language" itemprop="url">Introduction to formal language</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://jasonlhy.github.io" title="Jason Liu">Jason Liu</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-12-13T09:04:29.000Z" itemprop="datePublished">2015-12-13</time>
-    更新日期:<time datetime="2015-12-13T13:04:46.000Z" itemprop="dateModified">2015-12-13</time>
+    <time datetime="2016-03-02T16:30:40.000Z" itemprop="datePublished">2016-03-03</time>
+    更新日期:<time datetime="2016-03-03T15:29:32.000Z" itemprop="dateModified">2016-03-03</time>
     
   </p>
 </header>
@@ -91,69 +91,42 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Relaxation"><span class="toc-number">1.</span> <span class="toc-text">Relaxation</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dijkstra_Algorithm"><span class="toc-number">2.</span> <span class="toc-text">Dijkstra Algorithm</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Running_time"><span class="toc-number">2.1.</span> <span class="toc-text">Running time</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Limitation"><span class="toc-number">2.2.</span> <span class="toc-text">Limitation</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Bellman-Ford_Algorithm"><span class="toc-number">3.</span> <span class="toc-text">Bellman-Ford Algorithm</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Running_time_analysis"><span class="toc-number">3.1.</span> <span class="toc-text">Running time analysis</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u524D_u8A00"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Formal_Language"><span class="toc-number">2.</span> <span class="toc-text">Formal Language</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E00_u4E9B_u5B9A_u7FA9"><span class="toc-number">2.1.</span> <span class="toc-text">一些定義</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Regular_Language"><span class="toc-number">2.2.</span> <span class="toc-text">Regular Language</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Context-free_grammar__28_u4E0A_u4E0B_u6587_u7121_u95DC_u9023_u6587_u6CD5_29"><span class="toc-number">2.3.</span> <span class="toc-text">Context-free grammar (上下文無關連文法)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Automata_Theory"><span class="toc-number">3.</span> <span class="toc-text">Automata Theory</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Finite_State_Machine"><span class="toc-number">3.1.</span> <span class="toc-text">Finite State Machine</span></a></li></ol></li></ol>
 		</div>
 		
 
-		<h1 id="Relaxation"><a href="#Relaxation" class="headerlink" title="Relaxation"></a>Relaxation</h1><p>Each point has a known distance so far, if a vertex + distance to a particular point is shorter than the known distance of the point, update it.<br>if (d[v] &gt; d[u] + w(u, v))<br>  d[v] = d[u] + w(u, v)</p>
-<h1 id="Dijkstra_Algorithm"><a href="#Dijkstra_Algorithm" class="headerlink" title="Dijkstra Algorithm"></a>Dijkstra Algorithm</h1><p>Extract min from the priority queue and relax its surroudning vertexes.</p>
-<p>The priority queue is implement with Fibonacci heap</p>
-<pre class="sample">
-  Initialize-single-source(G, S) // set all distance to infinity
-  S = {} // path 
-  Q = G.V
-  while (Q is not empty)
-    u = EXTRACT-MIN(Q)
-    S union u
-    for each vertex v in adj[u] // total E times
-      RELAX(u, v, w)
-</pre>
-
-<h2 id="Running_time"><a href="#Running_time" class="headerlink" title="Running time"></a>Running time</h2><p>while loop executes V times<br>EXTRACT-MIN take O(log V)<br>decrease key operation O(1) with total edges E times</p>
-<p>Overall Running time: <code>O(V log V + E)</code></p>
-<p>Naive method: O(V^2 + E), (linear search for EXTRACT-MIN)</p>
-<h2 id="Limitation"><a href="#Limitation" class="headerlink" title="Limitation"></a>Limitation</h2><p>Only applicable for graphs with positive edge</p>
-<h1 id="Bellman-Ford_Algorithm"><a href="#Bellman-Ford_Algorithm" class="headerlink" title="Bellman-Ford Algorithm"></a>Bellman-Ford Algorithm</h1><p>Suppose a path from source to destination at most contains V - 1 edges<br>It basically try to <em>relax every edges</em> in the path until you reach the destination<br>It is based on dynamic proramming, but without a successor table of each vertex.<br>  d[i, v] = d[i - 1, v]<br>  d[i, v] = min(d[i, v], min(i - 1, u) + w(u, v))</p>
-<pre class="sample">
-for i = 1 to V - 1
-  for each vertex u 
-  if (d[u] is updated)
-    for each vertex v in adj[u]
-       if (d[v] > d[u] + w(u, v))
-          d[v] = d[u] + w(u, v)
-          successor = u
-  if no value is change, break
-</pre>
-
-<p>It can also detect negative cycle</p>
-<pre class="sample">
-  for each edge(u, v)
-    if (d[u] + w(u, v) < d[v])
-       "negative cycle detected !!"
-</pre>
-
-
-<h2 id="Running_time_analysis"><a href="#Running_time_analysis" class="headerlink" title="Running time analysis"></a>Running time analysis</h2><p>Simply O(VE), memory space (V + E)</p>
+		<h1 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h1><p>在很久很久以前，數學家門研究怎樣產生電腦，和研究怎樣令電腦運作<br>這門的學問叫Theory of computation (真的是theory, 因為都是抽象的電腦)<br>當中有兩個分支<br>Automata theory: 研究機械怎樣計算<br>Formal language: 研究language, language 是給automata計算的東西, 因此Formal language是一門跟Automata 很相關的科</p>
+<p>現在電腦中常用的<a href="https://en.wikipedia.org/wiki/Von_Neumann_architecture" target="_blank" rel="external">Von Neumann architecture</a> 是基於 Automata theory中的 <a href="https://en.wikipedia.org/wiki/Universal_Turing_machine" target="_blank" rel="external">Universal Turing machine</a></p>
+<p>By the way, Automata和Machine在一些文章中經常互用</p>
+<h1 id="Formal_Language"><a href="#Formal_Language" class="headerlink" title="Formal Language"></a>Formal Language</h1><h2 id="u4E00_u4E9B_u5B9A_u7FA9"><a href="#u4E00_u4E9B_u5B9A_u7FA9" class="headerlink" title="一些定義"></a>一些定義</h2><p>Language 由String 的集合(set)，String由字母所組成<br>Language 可以由Grammar 所產生(describe)<br>當每個grammar 產生的language 是一樣，那他們就是相同的grammar</p>
+<h2 id="Regular_Language"><a href="#Regular_Language" class="headerlink" title="Regular Language"></a>Regular Language</h2><p>Regular Language 就是Finite State Machine 內可以接受Language<br>Regular expression 是 Regular Language 的Implementation.</p>
+<h2 id="Context-free_grammar__28_u4E0A_u4E0B_u6587_u7121_u95DC_u9023_u6587_u6CD5_29"><a href="#Context-free_grammar__28_u4E0A_u4E0B_u6587_u7121_u95DC_u9023_u6587_u6CD5_29" class="headerlink" title="Context-free grammar (上下文無關連文法)"></a>Context-free grammar (上下文無關連文法)</h2><p>即是不管上下句子是什麼，最常用作programming language parsing<br>定義variable 和rule<br>rule 會形容如何把variable 轉換成最終的string</p>
+<span>$G = (V, T, S, P)$</span><!-- Has MathJax -->
+<p>V = variable<br>T = Terminals 最後產生的terminals<br>S = Starting variable<br>P = set of rules</p>
+<p>Context-free grammar 的rule 可以是left-recursion or right recursion<br>right recursion 的話可以由naive recursive parser 進行parsing, 例子: JSON</p>
+<p>PS: recursive parser 是top down parser</p>
+<h1 id="Automata_Theory"><a href="#Automata_Theory" class="headerlink" title="Automata Theory"></a>Automata Theory</h1><h2 id="Finite_State_Machine"><a href="#Finite_State_Machine" class="headerlink" title="Finite State Machine"></a>Finite State Machine</h2><p>輸入一個String, 一個個字母讀<br>不用temporary memory，利用在不同state 的轉移作computation<br>因此只需program memory (不同state)</p>
+<p>Deterministic finite automaton: 每個state 只會轉移到另一個state<br>Nondeterministic finite automaton: 每個state 可以轉移到n 個state</p>
   
 	 </div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Dynamic-Programming/">Dynamic Programming</a><a href="/tags/Greedy/">Greedy</a>
+  <span></span> <a href="/tags/Formal-Language/">Formal Language</a><a href="/tags/Theory-of-Computation/">Theory of Computation</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  <a class="article-category-link" href="/categories/Note/">Note</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://jasonlhy.github.io/2015/12/13/Shortest-Path-Algorithm/" data-title="Shortest Path Algorithm | Jason小小日記" data-tsina="null" class="share clearfix">
+  <div data-url="http://jasonlhy.github.io/2016/03/03/Introduction-to-formal-language/" data-title="Introduction to formal language | Jason小小日記" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -163,19 +136,11 @@ for i = 1 to V - 1
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/12/13/Divide-and-Conquer/" title="Divide and Conquer">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  Divide and Conquer</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/12/13/Minimum-spanning-tree/"  title="Minimum spanning tree">
+<a href="/2016/02/26/group-by-key-in-haskell/"  title="group by key in haskell">
  <strong>NEXT:</strong><br/> 
- <span>Minimum spanning tree
+ <span>group by key in haskell
 </span>
 </a>
 </div>
@@ -199,7 +164,7 @@ for i = 1 to V - 1
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Relaxation"><span class="toc-number">1.</span> <span class="toc-text">Relaxation</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dijkstra_Algorithm"><span class="toc-number">2.</span> <span class="toc-text">Dijkstra Algorithm</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Running_time"><span class="toc-number">2.1.</span> <span class="toc-text">Running time</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Limitation"><span class="toc-number">2.2.</span> <span class="toc-text">Limitation</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Bellman-Ford_Algorithm"><span class="toc-number">3.</span> <span class="toc-text">Bellman-Ford Algorithm</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Running_time_analysis"><span class="toc-number">3.1.</span> <span class="toc-text">Running time analysis</span></a></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u524D_u8A00"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Formal_Language"><span class="toc-number">2.</span> <span class="toc-text">Formal Language</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E00_u4E9B_u5B9A_u7FA9"><span class="toc-number">2.1.</span> <span class="toc-text">一些定義</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Regular_Language"><span class="toc-number">2.2.</span> <span class="toc-text">Regular Language</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Context-free_grammar__28_u4E0A_u4E0B_u6587_u7121_u95DC_u9023_u6587_u6CD5_29"><span class="toc-number">2.3.</span> <span class="toc-text">Context-free grammar (上下文無關連文法)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Automata_Theory"><span class="toc-number">3.</span> <span class="toc-text">Automata Theory</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Finite_State_Machine"><span class="toc-number">3.1.</span> <span class="toc-text">Finite State Machine</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
