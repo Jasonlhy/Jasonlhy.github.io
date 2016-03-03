@@ -11,7 +11,10 @@
     
     <meta name="author" content="Jason Liu">
     
-    <meta name="description" content="前言在很久很久以前，數學家門研究怎樣產生電腦，和研究怎樣令電腦運作這門的學問叫Theory of computation (真的是theory, 因為都是抽象的電腦)當中有兩個分支Automata theory: 研究機械怎樣計算Formal language: 研究language, langua">
+    <meta name="description" content="前言在很久很久以前，數學家門研究怎樣產生電腦，和研究怎樣令電腦運作, 這門的學問叫Theory of computation (真的是theory, 因為都是抽象的電腦), 當中有兩個分支:
+
+Automata theory研究機械怎樣計算
+Formal language研究language, la">
     
     
     
@@ -82,7 +85,7 @@
     </p>
   <p class="article-time">
     <time datetime="2016-03-02T16:30:40.000Z" itemprop="datePublished">2016-03-03</time>
-    更新日期:<time datetime="2016-03-03T15:29:32.000Z" itemprop="dateModified">2016-03-03</time>
+    更新日期:<time datetime="2016-03-03T15:32:43.000Z" itemprop="dateModified">2016-03-03</time>
     
   </p>
 </header>
@@ -95,9 +98,12 @@
 		</div>
 		
 
-		<h1 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h1><p>在很久很久以前，數學家門研究怎樣產生電腦，和研究怎樣令電腦運作<br>這門的學問叫Theory of computation (真的是theory, 因為都是抽象的電腦)<br>當中有兩個分支<br>Automata theory: 研究機械怎樣計算<br>Formal language: 研究language, language 是給automata計算的東西, 因此Formal language是一門跟Automata 很相關的科</p>
-<p>現在電腦中常用的<a href="https://en.wikipedia.org/wiki/Von_Neumann_architecture" target="_blank" rel="external">Von Neumann architecture</a> 是基於 Automata theory中的 <a href="https://en.wikipedia.org/wiki/Universal_Turing_machine" target="_blank" rel="external">Universal Turing machine</a></p>
-<p>By the way, Automata和Machine在一些文章中經常互用</p>
+		<h1 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h1><p>在很久很久以前，數學家門研究怎樣產生電腦，和研究怎樣令電腦運作, 這門的學問叫Theory of computation (真的是theory, 因為都是抽象的電腦), 當中有兩個分支:</p>
+<ul>
+<li>Automata theory<br>研究機械怎樣計算</li>
+<li>Formal language<br>研究language, language 是給automata計算的東西, 因此Formal language是一門跟Automata 很相關的科</li>
+</ul>
+<p>現在電腦中常用的<a href="https://en.wikipedia.org/wiki/Von_Neumann_architecture" target="_blank" rel="external">Von Neumann architecture</a> 是基於 Automata theory中的 <a href="https://en.wikipedia.org/wiki/Universal_Turing_machine" target="_blank" rel="external">Universal Turing machine</a><br>By the way, Automata和Machine在一些文章中經常互用</p>
 <h1 id="Formal_Language"><a href="#Formal_Language" class="headerlink" title="Formal Language"></a>Formal Language</h1><h2 id="u4E00_u4E9B_u5B9A_u7FA9"><a href="#u4E00_u4E9B_u5B9A_u7FA9" class="headerlink" title="一些定義"></a>一些定義</h2><p>Language 由String 的集合(set)，String由字母所組成<br>Language 可以由Grammar 所產生(describe)<br>當每個grammar 產生的language 是一樣，那他們就是相同的grammar</p>
 <h2 id="Regular_Language"><a href="#Regular_Language" class="headerlink" title="Regular Language"></a>Regular Language</h2><p>Regular Language 就是Finite State Machine 內可以接受Language<br>Regular expression 是 Regular Language 的Implementation.</p>
 <h2 id="Context-free_grammar__28_u4E0A_u4E0B_u6587_u7121_u95DC_u9023_u6587_u6CD5_29"><a href="#Context-free_grammar__28_u4E0A_u4E0B_u6587_u7121_u95DC_u9023_u6587_u6CD5_29" class="headerlink" title="Context-free grammar (上下文無關連文法)"></a>Context-free grammar (上下文無關連文法)</h2><p>即是不管上下句子是什麼，最常用作programming language parsing<br>定義variable 和rule<br>rule 會形容如何把variable 轉換成最終的string</p>
@@ -106,7 +112,10 @@
 <p>Context-free grammar 的rule 可以是left-recursion or right recursion<br>right recursion 的話可以由naive recursive parser 進行parsing, 例子: JSON</p>
 <p>PS: recursive parser 是top down parser</p>
 <h1 id="Automata_Theory"><a href="#Automata_Theory" class="headerlink" title="Automata Theory"></a>Automata Theory</h1><h2 id="Finite_State_Machine"><a href="#Finite_State_Machine" class="headerlink" title="Finite State Machine"></a>Finite State Machine</h2><p>輸入一個String, 一個個字母讀<br>不用temporary memory，利用在不同state 的轉移作computation<br>因此只需program memory (不同state)</p>
-<p>Deterministic finite automaton: 每個state 只會轉移到另一個state<br>Nondeterministic finite automaton: 每個state 可以轉移到n 個state</p>
+<ul>
+<li>Deterministic finite automaton: 每個state 只會轉移到另一個state</li>
+<li>Nondeterministic finite automaton: 每個state 可以轉移到n 個state</li>
+</ul>
   
 	 </div>
 		<footer class="article-footer clearfix">
