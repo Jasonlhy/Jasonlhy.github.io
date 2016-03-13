@@ -13,8 +13,8 @@
     
     <meta name="description" content="前言在很久很久以前，數學家門研究怎樣產生電腦，和研究怎樣令電腦運作, 這門的學問叫Theory of computation (真的是theory, 因為都是抽象的電腦), 當中有兩個分支:
 
-Automata theory研究機械怎樣計算
-Formal language研究language, la">
+Automata theory 研究機械怎樣計算
+Formal language 研究language, ">
     
     
     
@@ -85,7 +85,7 @@ Formal language研究language, la">
     </p>
   <p class="article-time">
     <time datetime="2016-03-02T16:30:40.000Z" itemprop="datePublished">2016-03-03</time>
-    更新日期:<time datetime="2016-03-03T15:32:43.000Z" itemprop="dateModified">2016-03-03</time>
+    更新日期:<time datetime="2016-03-13T14:36:41.000Z" itemprop="dateModified">2016-03-13</time>
     
   </p>
 </header>
@@ -94,16 +94,16 @@ Formal language研究language, la">
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u524D_u8A00"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Formal_Language"><span class="toc-number">2.</span> <span class="toc-text">Formal Language</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E00_u4E9B_u5B9A_u7FA9"><span class="toc-number">2.1.</span> <span class="toc-text">一些定義</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Regular_Language"><span class="toc-number">2.2.</span> <span class="toc-text">Regular Language</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Context-free_grammar__28_u4E0A_u4E0B_u6587_u7121_u95DC_u9023_u6587_u6CD5_29"><span class="toc-number">2.3.</span> <span class="toc-text">Context-free grammar (上下文無關連文法)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Automata_Theory"><span class="toc-number">3.</span> <span class="toc-text">Automata Theory</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Finite_State_Machine"><span class="toc-number">3.1.</span> <span class="toc-text">Finite State Machine</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u524D_u8A00"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Formal_Language"><span class="toc-number">2.</span> <span class="toc-text">Formal Language</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E00_u4E9B_u5B9A_u7FA9"><span class="toc-number">2.1.</span> <span class="toc-text">一些定義</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Regular_Language"><span class="toc-number">2.2.</span> <span class="toc-text">Regular Language</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Context-free_grammar__28_u4E0A_u4E0B_u6587_u7121_u95DC_u9023_u6587_u6CD5_29"><span class="toc-number">2.3.</span> <span class="toc-text">Context-free grammar (上下文無關連文法)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Automata_Theory"><span class="toc-number">3.</span> <span class="toc-text">Automata Theory</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Finite_State_Machine"><span class="toc-number">3.1.</span> <span class="toc-text">Finite State Machine</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Deterministic_finite_automaton"><span class="toc-number">3.1.1.</span> <span class="toc-text">Deterministic finite automaton</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nondeterministic_finite_automaton"><span class="toc-number">3.1.2.</span> <span class="toc-text">Nondeterministic finite automaton</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NFA__3D_DFA"><span class="toc-number">3.1.3.</span> <span class="toc-text">NFA = DFA</span></a></li></ol></li></ol></li></ol>
 		</div>
 		
 
 		<h1 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h1><p>在很久很久以前，數學家門研究怎樣產生電腦，和研究怎樣令電腦運作, 這門的學問叫Theory of computation (真的是theory, 因為都是抽象的電腦), 當中有兩個分支:</p>
 <ul>
-<li>Automata theory<br>研究機械怎樣計算</li>
-<li>Formal language<br>研究language, language 是給automata計算的東西, 因此Formal language是一門跟Automata 很相關的科</li>
+<li>Automata theory 研究機械怎樣計算</li>
+<li>Formal language 研究language, language 是給automata計算的東西</li>
 </ul>
-<p>現在電腦中常用的<a href="https://en.wikipedia.org/wiki/Von_Neumann_architecture" target="_blank" rel="external">Von Neumann architecture</a> 是基於 Automata theory中的 <a href="https://en.wikipedia.org/wiki/Universal_Turing_machine" target="_blank" rel="external">Universal Turing machine</a><br>By the way, Automata和Machine在一些文章中經常互用</p>
+<p>因此Formal language是一門跟Automata 很相關的科. 現在電腦中常用的<a href="https://en.wikipedia.org/wiki/Von_Neumann_architecture" target="_blank" rel="external">Von Neumann architecture</a> 是基於 Automata theory中的 <a href="https://en.wikipedia.org/wiki/Universal_Turing_machine" target="_blank" rel="external">Universal Turing machine</a><br>By the way, Automata和Machine在一些文章中經常互用</p>
 <h1 id="Formal_Language"><a href="#Formal_Language" class="headerlink" title="Formal Language"></a>Formal Language</h1><h2 id="u4E00_u4E9B_u5B9A_u7FA9"><a href="#u4E00_u4E9B_u5B9A_u7FA9" class="headerlink" title="一些定義"></a>一些定義</h2><p>Language 由String 的集合(set)，String由字母所組成<br>Language 可以由Grammar 所產生(describe)<br>當每個grammar 產生的language 是一樣，那他們就是相同的grammar</p>
 <h2 id="Regular_Language"><a href="#Regular_Language" class="headerlink" title="Regular Language"></a>Regular Language</h2><p>Regular Language 就是Finite State Machine 內可以接受Language<br>Regular expression 是 Regular Language 的Implementation.</p>
 <h2 id="Context-free_grammar__28_u4E0A_u4E0B_u6587_u7121_u95DC_u9023_u6587_u6CD5_29"><a href="#Context-free_grammar__28_u4E0A_u4E0B_u6587_u7121_u95DC_u9023_u6587_u6CD5_29" class="headerlink" title="Context-free grammar (上下文無關連文法)"></a>Context-free grammar (上下文無關連文法)</h2><p>即是不管上下句子是什麼，最常用作programming language parsing<br>定義variable 和rule<br>rule 會形容如何把variable 轉換成最終的string</p>
@@ -111,12 +111,19 @@ Formal language研究language, la">
 <p>V = variable<br>T = Terminals 最後產生的terminals<br>S = Starting variable<br>P = set of rules</p>
 <p>Context-free grammar 的rule 可以是left-recursion or right recursion<br>right recursion 的話可以由naive recursive parser 進行parsing, 例子: JSON</p>
 <p>PS: recursive parser 是top down parser</p>
-<h1 id="Automata_Theory"><a href="#Automata_Theory" class="headerlink" title="Automata Theory"></a>Automata Theory</h1><h2 id="Finite_State_Machine"><a href="#Finite_State_Machine" class="headerlink" title="Finite State Machine"></a>Finite State Machine</h2><p>輸入一個String, 一個個字母讀<br>不用temporary memory，利用在不同state 的轉移作computation<br>因此只需program memory (不同state)</p>
-<ul>
-<li>Deterministic finite automaton: 每個state 只會轉移到另一個state</li>
-<li>Nondeterministic finite automaton: 每個state 可以轉移到n 個state</li>
-</ul>
-  
+<h1 id="Automata_Theory"><a href="#Automata_Theory" class="headerlink" title="Automata Theory"></a>Automata Theory</h1><h2 id="Finite_State_Machine"><a href="#Finite_State_Machine" class="headerlink" title="Finite State Machine"></a>Finite State Machine</h2><p><strong>簡單解釋</strong><br>輸入一個String, 一個個字母讀<br>不用temporary memory，利用在不同state 的轉移作computation<br>因此只需program memory (不同state)<br>停在final state 代表接受</p>
+<p><strong>數學定義</strong><br>一推function, 定義每個state 接受什麼字母，然後跳到那個state<br>例如state q0 接受a，跳去state q1就是<br><span>$\delta(q0, a) = q1$</span><!-- Has MathJax --></p>
+<h3 id="Deterministic_finite_automaton"><a href="#Deterministic_finite_automaton" class="headerlink" title="Deterministic finite automaton"></a>Deterministic finite automaton</h3><p>state接受某個字母，只可以轉移到一個state<br>function 需要是total function (接受每種可能字母)</p>
+<h3 id="Nondeterministic_finite_automaton"><a href="#Nondeterministic_finite_automaton" class="headerlink" title="Nondeterministic finite automaton"></a>Nondeterministic finite automaton</h3><p>state接受某個字母，可以轉移到多於一個state<br>function 不需要是total function<br>state 可以接受empty string (根本是外掛。。)</p>
+<h3 id="NFA__3D_DFA"><a href="#NFA__3D_DFA" class="headerlink" title="NFA = DFA"></a>NFA = DFA</h3><p>DNF不就是NFA嘛…<br>而NFA可以轉換為DNF</p>
+<p><strong>首先移除empty string transition</strong><br><code>lambda closure</code>: 接受empty string 可以到達的state<br>假設q0 可以接受empty string，移除他的empty string transition</p>
+<span>$\delta&apos;(q0, a) = \lambda-closure( \lambda-closure(q0), a )$</span><!-- Has MathJax -->
+<p>q0 接受empty string 到達的states <code>(set A)</code>，他們接受a 到那個states <code>(set B)</code> （很直覺吧…但不是最後答案)<br><code>(set B)</code> 再擴展，別忘了它們可以接受empty string 再走到 <code>(set C)</code><br><code>Set C</code> 才是q0 不用emtpy string transition 接受<code>a</code> 可以走到的地方</p>
+<p><strong>產生DNF的state</strong><br>例如NFA 有三個state: q0, q1, q2<br>DNF 最多有的state是q0, q1, q2的powerset (2^n)<br><span>$\left \{  \varnothing \right \}, \left \{  q0\right \}, \left \{  q1\right \}, \left \{  q2\right \},\left \{  q0, q1 \right \}, \left \{  q0, q2\right \}, \left \{  q1,q2\right \}, \left \{  q0,q1,q2\right \}$</span><!-- Has MathJax --></p>
+<p>計算transition function 時，把destination union 就可以</p>
+<span>$$\delta(q0, a) = q1 \\
+\delta(q1, a) = q2 \\
+\therefore \delta (\left \{  q0, q1 \right \}, a) = \left \{ q1, q2 \right \}$$</span><!-- Has MathJax -->  
 	 </div>
 		<footer class="article-footer clearfix">
 
@@ -173,7 +180,7 @@ Formal language研究language, la">
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u524D_u8A00"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Formal_Language"><span class="toc-number">2.</span> <span class="toc-text">Formal Language</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E00_u4E9B_u5B9A_u7FA9"><span class="toc-number">2.1.</span> <span class="toc-text">一些定義</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Regular_Language"><span class="toc-number">2.2.</span> <span class="toc-text">Regular Language</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Context-free_grammar__28_u4E0A_u4E0B_u6587_u7121_u95DC_u9023_u6587_u6CD5_29"><span class="toc-number">2.3.</span> <span class="toc-text">Context-free grammar (上下文無關連文法)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Automata_Theory"><span class="toc-number">3.</span> <span class="toc-text">Automata Theory</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Finite_State_Machine"><span class="toc-number">3.1.</span> <span class="toc-text">Finite State Machine</span></a></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u524D_u8A00"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Formal_Language"><span class="toc-number">2.</span> <span class="toc-text">Formal Language</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E00_u4E9B_u5B9A_u7FA9"><span class="toc-number">2.1.</span> <span class="toc-text">一些定義</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Regular_Language"><span class="toc-number">2.2.</span> <span class="toc-text">Regular Language</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Context-free_grammar__28_u4E0A_u4E0B_u6587_u7121_u95DC_u9023_u6587_u6CD5_29"><span class="toc-number">2.3.</span> <span class="toc-text">Context-free grammar (上下文無關連文法)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Automata_Theory"><span class="toc-number">3.</span> <span class="toc-text">Automata Theory</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Finite_State_Machine"><span class="toc-number">3.1.</span> <span class="toc-text">Finite State Machine</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Deterministic_finite_automaton"><span class="toc-number">3.1.1.</span> <span class="toc-text">Deterministic finite automaton</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nondeterministic_finite_automaton"><span class="toc-number">3.1.2.</span> <span class="toc-text">Nondeterministic finite automaton</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NFA__3D_DFA"><span class="toc-number">3.1.3.</span> <span class="toc-text">NFA = DFA</span></a></li></ol></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
