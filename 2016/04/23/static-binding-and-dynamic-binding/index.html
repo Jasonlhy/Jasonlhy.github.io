@@ -4,14 +4,14 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>command not found: ghci | Jason小小日記</title>	
+    <title>static binding and dynamic binding | Jason小小日記</title>	
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
   	
     
     
     <meta name="author" content="Jason Liu">
     
-    <meta name="description" itemprop="description" content="Cannot find command of Haskell interactive environment in terminal after upgraded to Mac OS 10.11 El Capitan">
+    <meta name="description" content="ExampleCopied from https://www.emacswiki.org/emacs/DynamicBindingVsLexicalBinding1234(let ((a 1))                            ; binding (1)  (let ((f (">
     
     
     
@@ -74,15 +74,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/10/09/command not found: ghci/" title="command not found: ghci" itemprop="url">command not found: ghci</a>
+      <a href="/2016/04/23/static-binding-and-dynamic-binding/" title="static binding and dynamic binding" itemprop="url">static binding and dynamic binding</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://jasonlhy.github.io" title="Jason Liu">Jason Liu</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-10-09T06:54:11.000Z" itemprop="datePublished">2015-10-09</time>
-    更新日期:<time datetime="2016-01-10T20:51:58.000Z" itemprop="dateModified">2016-01-11</time>
+    <time datetime="2016-04-23T12:01:06.000Z" itemprop="datePublished">2016-04-23</time>
+    更新日期:<time datetime="2016-04-23T12:12:08.000Z" itemprop="dateModified">2016-04-23</time>
     
   </p>
 </header>
@@ -91,32 +91,39 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What_happened__3F"><span class="toc-number">1.</span> <span class="toc-text">What happened ?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#A_simple_solution"><span class="toc-number">2.</span> <span class="toc-text">A simple solution</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Example"><span class="toc-number">1.</span> <span class="toc-text">Example</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Static_binding"><span class="toc-number">2.</span> <span class="toc-text">Static binding</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dynamic_binding"><span class="toc-number">3.</span> <span class="toc-text">Dynamic binding</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Fluid_binding"><span class="toc-number">4.</span> <span class="toc-text">Fluid binding</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u7E3D_u7D50"><span class="toc-number">5.</span> <span class="toc-text">總結</span></a></li></ol>
 		</div>
 		
 
-		<h1 id="What_happened__3F"><a href="#What_happened__3F" class="headerlink" title="What happened ?"></a>What happened ?</h1><p>I just upgraded to El Capitan, and I installed the package with the package manager from the official website. After that I typed in ghci in terminal, but it turned out: command not found. I checked the documentation which states: Executables are symlinked in <code>/usr/local/bin</code> and should be available in any shell. It seems that the problem is caused by <code>/usr/local/bin</code> which is missing from the beginning.</p>
-<h1 id="A_simple_solution"><a href="#A_simple_solution" class="headerlink" title="A simple solution"></a>A simple solution</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">Use</span> /<span class="keyword">Library</span>/Haskell/<span class="keyword">bin</span>/<span class="keyword">uninstall</span>-hs <span class="keyword">to</span> remove the installed packages</span><br><span class="line">cd /usr/<span class="keyword">local</span></span><br><span class="line">mkdir <span class="keyword">bin</span></span><br><span class="line"><span class="keyword">install</span> the packages again</span></span><br></pre></td></tr></table></figure>
+		<h1 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h1><p>Copied from <a href="https://www.emacswiki.org/emacs/DynamicBindingVsLexicalBinding" target="_blank" rel="external">https://www.emacswiki.org/emacs/DynamicBindingVsLexicalBinding</a><br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">let</span> <span class="list">(<span class="list">(<span class="keyword">a</span> <span class="number">1</span>)</span>)</span>                            <span class="comment">; binding (1)</span></span><br><span class="line">  <span class="list">(<span class="keyword">let</span> <span class="list">(<span class="list">(<span class="keyword">f</span> <span class="list">(<span class="keyword">lambda</span> <span class="list">()</span> <span class="list">(<span class="keyword">print</span> a)</span>)</span>)</span>)</span></span><br><span class="line">    <span class="list">(<span class="keyword">let</span> <span class="list">(<span class="list">(<span class="keyword">a</span> <span class="number">2</span>)</span>)</span>                        <span class="comment">; binding (2)</span></span><br><span class="line">      <span class="list">(<span class="keyword">funcall</span> f)</span>)</span>)</span>)</span></span><br></pre></td></tr></table></figure></p>
+<blockquote><p>A name that is lexically bound is looked up only in bindings in the lexical environment of the name – that is, in bindings that enclose the name in the source code. So if “a” is lexically bound, the code above prints “1”, because only binding (1) is in the lexical environment. When there are multiple bindings in the lexical environment, the innermost one is used.</p>
+<p>A name that is dynamically bound is looked up only in bindings in the dynamic environment of the name – that is, in all bindings which have been created since the program began and which have not yet been destroyed. When there are multiple bindings in the dynamic environment, the most recently created one is used. So if “a” is dynamically bound, the code above prints “2” because both binding (1) and binding (2) have been created by the time “a” is evaluated, but binding (2) was created more recently.</p>
+<p>(In a multi-threaded Lisp we would have to be a bit more careful about dynamic binding to make sure that one thread doesn’t see bindings created on another thread. But EmacsLisp is single-threaded so that’s not a worry.)</p>
+</blockquote>
+<h1 id="Static_binding"><a href="#Static_binding" class="headerlink" title="Static binding"></a>Static binding</h1><p>又叫<code>lexical binding</code><br>呼叫variable時侯尋找scope內裡的variable value<br>compile 時巳經決定了使用那個variable</p>
+<h1 id="Dynamic_binding"><a href="#Dynamic_binding" class="headerlink" title="Dynamic binding"></a>Dynamic binding</h1><p>又叫<code>late binding</code>，呼叫variable時根據runtime sequence去尋找value<br>好的地方可以在runtime 時改變variable的數值，又或者改變function 的implementation</p>
+<h1 id="Fluid_binding"><a href="#Fluid_binding" class="headerlink" title="Fluid binding"></a>Fluid binding</h1><p>兩個合體, 平常為static binding , 但可以指定某個scope 內有dynamic binding</p>
+<h1 id="u7E3D_u7D50"><a href="#u7E3D_u7D50" class="headerlink" title="總結"></a>總結</h1><p>現代的programming language 多算是lexical binding 為主<br>但會提供一些方法去實作dynamic binding</p>
   
 	 </div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Haskell/">Haskell</a>
+  <span></span> <a href="/tags/Programming-Principle/">Programming Principle</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Problem/">Problem</a>
+  <a class="article-category-link" href="/categories/Note/">Note</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://jasonlhy.github.io/2015/10/09/command not found: ghci/" data-title="command not found: ghci | Jason小小日記" data-tsina="null" class="share clearfix">
+  <div data-url="http://jasonlhy.github.io/2016/04/23/static-binding-and-dynamic-binding/" data-title="static binding and dynamic binding | Jason小小日記" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -126,19 +133,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/10/19/新主題第一貼/" title="新主題第一貼 - Quick sort">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  新主題第一貼 - Quick sort</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2013/08/29/Exception-Prelude-read-no-parse/"  title="Exception: Prelude.read: no parse">
+<a href="/2016/03/25/elementary-s4e16-subtitle-note/"  title="elementary s4e16 subtitle note">
  <strong>NEXT:</strong><br/> 
- <span>Exception: Prelude.read: no parse
+ <span>elementary s4e16 subtitle note
 </span>
 </a>
 </div>
@@ -162,7 +161,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What_happened__3F"><span class="toc-number">1.</span> <span class="toc-text">What happened ?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#A_simple_solution"><span class="toc-number">2.</span> <span class="toc-text">A simple solution</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Example"><span class="toc-number">1.</span> <span class="toc-text">Example</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Static_binding"><span class="toc-number">2.</span> <span class="toc-text">Static binding</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dynamic_binding"><span class="toc-number">3.</span> <span class="toc-text">Dynamic binding</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Fluid_binding"><span class="toc-number">4.</span> <span class="toc-text">Fluid binding</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u7E3D_u7D50"><span class="toc-number">5.</span> <span class="toc-text">總結</span></a></li></ol>
   </div>
 
 <div id="asidepart">
