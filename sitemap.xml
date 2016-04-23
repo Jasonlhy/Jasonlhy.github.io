@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://jasonlhy.github.io/2016/02/23/arameter-passing/</loc>
+    <lastmod>2016-04-23T11:46:46.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://jasonlhy.github.io/2016/03/25/elementary-s4e16-subtitle-note/</loc>
     <lastmod>2016-03-25T15:46:42.000Z</lastmod>
   </url>
@@ -24,11 +29,6 @@
   <url>
     <loc>http://jasonlhy.github.io/2016/02/26/group-by-key-in-haskell/</loc>
     <lastmod>2016-03-02T15:06:35.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://jasonlhy.github.io/2016/02/23/parameter-passing/</loc>
-    <lastmod>2016-02-23T15:48:15.000Z</lastmod>
   </url>
   
   <url>
