@@ -4,18 +4,15 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>2008-06-18 07:20:51 | Jason小小日記</title>	
+    <title>Migrate from Xanga to Hexo | Jason小小日記</title>	
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
   	
     
     
     <meta name="author" content="Jason Liu">
     
-    <meta name="description" content="重有四科..考試考左一大半我諗最差係中文reading =.=都吾係人做 !!最好應該係maths,但一條送分既題目竟然計錯數..希望今次有八字頭啦=.=
-重有chem , cit , sba, chinese oral
-最驚oral=.= 隋時畀人屈機
-chem&amp;nbsp; 睇狀態啦
-sba , ">
+    <meta name="description" content="Download Migration Plugin1npm install hexo-migrator-wordpress --save
+Download Archive from XangaI got a folder named 29018156_1, and 29018156_2.xml in">
     
     
     
@@ -78,15 +75,15 @@ sba , ">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2008/06/18/2008-06-18-07-20-51/" title="2008-06-18 07:20:51" itemprop="url">2008-06-18 07:20:51</a>
+      <a href="/2016/04/29/Migrate-from-Xanga-to-Hexo/" title="Migrate from Xanga to Hexo" itemprop="url">Migrate from Xanga to Hexo</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://jasonlhy.github.io" title="Jason Liu">Jason Liu</a>
     </p>
   <p class="article-time">
-    <time datetime="2008-06-17T23:20:51.000Z" itemprop="datePublished">2008-06-18</time>
-    更新日期:<time datetime="2016-04-28T16:59:47.000Z" itemprop="dateModified">2016-04-29</time>
+    <time datetime="2016-04-28T17:09:11.000Z" itemprop="datePublished">2016-04-29</time>
+    更新日期:<time datetime="2016-04-28T17:29:03.000Z" itemprop="dateModified">2016-04-29</time>
     
   </p>
 </header>
@@ -95,31 +92,34 @@ sba , ">
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Download_Migration_Plugin"><span class="toc-number">1.</span> <span class="toc-text">Download Migration Plugin</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Download_Archive_from_Xanga"><span class="toc-number">2.</span> <span class="toc-text">Download Archive from Xanga</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Modify_the_Plugin"><span class="toc-number">3.</span> <span class="toc-text">Modify the Plugin</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Do_migration"><span class="toc-number">4.</span> <span class="toc-text">Do migration</span></a></li></ol>
 		</div>
 		
 
-		<p>重有四科..<br>考試考左一大半<br>我諗最差係中文reading =.=<br>都吾係人做 !!<br>最好應該係maths,<br>但一條送分既題目竟然計錯數..<br>希望今次有八字頭啦=.=</p>
-<p>重有chem , cit , sba, chinese oral</p>
-<p>最驚oral=.= 隋時畀人屈機</p>
-<p>chem&nbsp; 睇狀態啦</p>
-<p>sba , 重未做=.= 聽日先做啦, 還掂CIT 吾洗溫書=.=</p>
-<p>CIT , 吾洗溫書既一科-.- 勁屈機的一科,,希望吾好真係難到飛起啦=.=</p>
+		<h1 id="Download_Migration_Plugin"><a href="#Download_Migration_Plugin" class="headerlink" title="Download Migration Plugin"></a>Download Migration Plugin</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> hexo-migrator-wordpress <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure>
+<h1 id="Download_Archive_from_Xanga"><a href="#Download_Archive_from_Xanga" class="headerlink" title="Download Archive from Xanga"></a>Download Archive from Xanga</h1><p>I got a folder named <code>29018156_1</code>, and <code>29018156_2.xml</code> inside it stores my xanga content.<br><img src="/2016/04/29/Migrate-from-Xanga-to-Hexo/archive.png" alt="archive.png" title=""></p>
+<h1 id="Modify_the_Plugin"><a href="#Modify_the_Plugin" class="headerlink" title="Modify the Plugin"></a>Modify the Plugin</h1><p>Since the format of the archive is not compatible with the plugin, modify the source codes just like the pictures shown below.<br><img src="/2016/04/29/Migrate-from-Xanga-to-Hexo/change1.png" alt="change1.png" title=""><br><img src="/2016/04/29/Migrate-from-Xanga-to-Hexo/change2.png" alt="change2.png" title=""></p>
+<h1 id="Do_migration"><a href="#Do_migration" class="headerlink" title="Do migration"></a>Do migration</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo migrate wordpress /Users/Jason/Downloads/<span class="number">29018156</span>_1/<span class="number">29018156</span>_2.xml</span><br></pre></td></tr></table></figure>
   
 	 </div>
 		<footer class="article-footer clearfix">
 
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Hexo/">Hexo</a><a href="/tags/Xanga/">Xanga</a>
+  </div>
+
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Migrate-From-Xanga/">Migrate From Xanga</a>
+  <a class="article-category-link" href="/categories/Problem/">Problem</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://jasonlhy.github.io/2008/06/18/2008-06-18-07-20-51/" data-title="2008-06-18 07:20:51 | Jason小小日記" data-tsina="null" class="share clearfix">
+  <div data-url="http://jasonlhy.github.io/2016/04/29/Migrate-from-Xanga-to-Hexo/" data-title="Migrate from Xanga to Hexo | Jason小小日記" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -129,19 +129,11 @@ sba , ">
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2008/06/19/2008-06-19-06-05-51/" title="2008-06-19 06:05:51">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  2008-06-19 06:05:51</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2007/11/26/黃埔的3日2夜/"  title="黃埔的3日2夜~">
+<a href="/2016/04/23/static-binding-and-dynamic-binding/"  title="static binding and dynamic binding">
  <strong>NEXT:</strong><br/> 
- <span>黃埔的3日2夜~
+ <span>static binding and dynamic binding
 </span>
 </a>
 </div>
@@ -165,7 +157,7 @@ sba , ">
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Download_Migration_Plugin"><span class="toc-number">1.</span> <span class="toc-text">Download Migration Plugin</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Download_Archive_from_Xanga"><span class="toc-number">2.</span> <span class="toc-text">Download Archive from Xanga</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Modify_the_Plugin"><span class="toc-number">3.</span> <span class="toc-text">Modify the Plugin</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Do_migration"><span class="toc-number">4.</span> <span class="toc-text">Do migration</span></a></li></ol>
   </div>
 
 <div id="asidepart">
